@@ -1,0 +1,532 @@
+'use strict';
+
+module.exports = {
+    extends: 'stylelint-config-standard',
+    plugins: [
+        'stylelint-declaration-block-no-ignored-properties',
+        'stylelint-order',
+    ],
+    rules: {
+        // - Les valeurs de transparence doivent utiliser le format numérique (pour le moment).
+        // TODO: Suivre l'évolution du support navigateur pour le format pourcentage et passer à ce format.
+        //       (https://caniuse.com/#feat=mdn-css_properties_opacity_percentages)
+        // @see https://stylelint.io/user-guide/rules/alpha-value-notation
+        'alpha-value-notation': 'number',
+
+        // - S'assure qu'il y a bien une ligne vide avant les "at-rules" (e.g. `@include`, `@media`)
+        //   Autorise l'absence de ligne vide pour:
+        //   - Les at-rules sans corps qui se suivent
+        //   - Les at-rules qui sont premières dans leur block
+        //   - Les `@if`, `@else`, `@return` et `@content`
+        // @see https://stylelint.io/user-guide/rules/at-rule-empty-line-before
+        'at-rule-empty-line-before': ['always', {
+            except: [
+                'blockless-after-same-name-blockless',
+                'first-nested',
+            ],
+            ignore: ['after-comment'],
+            ignoreAtRules: ['if', 'else', 'return', 'content', 'import'],
+        }],
+
+        // - Pas de préfixe navigateur pour les @-rule (e.g. `@-webkit-keyframes`)
+        //   (ils sont ajoutés automatiquement par l'autoprefixer)
+        // @see https://stylelint.io/user-guide/rules/at-rule-no-vendor-prefix
+        'at-rule-no-vendor-prefix': true,
+
+        // - S'assure que certaines at-rules normalisées contiennent bien toutes les propriétés requises:
+        //   - `@font-face`: Doit contenir au minimum les propriétés: `font-family`, `font-weight`, `font-style` et `src`.
+        // @see https://stylelint.io/user-guide/rules/at-rule-property-requirelist
+        'at-rule-property-requirelist': {
+            'font-face': ['font-family', 'font-weight', 'font-style', 'src'],
+        },
+
+        // - Jamais d'espace devant le point virgule des @-rules.
+        // @see https://stylelint.io/user-guide/rules/at-rule-semicolon-space-before
+        'at-rule-semicolon-space-before': 'never',
+
+        // - Interdit les blocks vides. (e.g. `.ma-classe {}`)
+        // @see https://stylelint.io/user-guide/rules/block-no-empty
+        'block-no-empty': true,
+
+        // - Retour à la ligne après chaque accolade de fermeture.
+        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
+        'block-closing-brace-newline-after': 'always',
+
+        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la syntaxe legacy (pour le moment).
+        // TODO: Suivre l'évolution du proposal et changer pour `modern` dès que c'est en stage 3.
+        //       (https://preset-env.cssdb.org/features#color-functional-notation)
+        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
+        'color-function-notation': 'legacy',
+
+        // - Il ne faut pas utiliser les noms de couleurs mais
+        //   privilegier les codes hexadécimaux.
+        // @see https://stylelint.io/user-guide/rules/color-named
+        'color-named': 'never',
+
+        // - Interdit l'utilisation de code hexadécimaux invalides pour les couleurs.
+        // @see https://stylelint.io/user-guide/rules/color-no-invalid-hex
+        'color-no-invalid-hex': true,
+
+        // - Les propriétés customs doivent être en "hyphenated lowercase".
+        //   Elles ne doivent pas commencer par un chiffre et finir par un tiret.
+        //   (e.g. `--ma-var`)
+        // @see https://stylelint.io/user-guide/rules/custom-property-pattern
+        // @see https://regex101.com/r/leWMWP/2
+        'custom-property-pattern': /^[a-z](?:[a-z0-9-]*[a-z0-9])?$/,
+
+        // - Interdit les propriétés en double à l'intérieur des blocks de déclaration.
+        // @see https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties
+        'declaration-block-no-duplicate-properties': true,
+
+        // - Interdit l'utilisation des propriétés au format "long" lorsqu'elles peuvent être
+        //   "compactées" avec un format court.
+        // @see https://stylelint.io/user-guide/rules/declaration-block-no-redundant-longhand-properties
+        'declaration-block-no-redundant-longhand-properties': true,
+
+        // - Interdit l'utilisation du mot clé `!important`,
+        //   Le fait de devoir echapper son utilisation avec un commentaire
+        //   de désactivation de règle permet de s'assurer qu'il ne sera
+        //   utilisé qu'en cas de réel besoin.
+        // @see https://stylelint.io/user-guide/rules/declaration-no-important
+        'declaration-no-important': true,
+
+        // - Restreint les unités utilisables (pour l'homogénéisation de la codebase).
+        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-whitelist
+        'declaration-property-unit-whitelist': {
+            /* eslint-disable key-spacing */
+            'line-height'             : ['px', 'pt', 'mm', 'em', 'rem'],
+            'font-size'               : ['px', 'pt', 'em', 'rem'],
+            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%'],
+            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%'],
+            'vertical-align'          : ['px', 'pt', 'em', 'rem'],
+            '/.*/'                    : ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
+            /* eslint-enable key-spacing */
+        },
+
+        // - Les noms de font contenant des espaces doivent toujours être wrappées
+        //   dans des singles-quotes (e.g. "Times New Roman").
+        // @see https://stylelint.io/user-guide/rules/font-family-name-quotes
+        'font-family-name-quotes': 'always-where-recommended',
+
+        // - Les `font-weight` doivent être déclarées numériquement (e.g. `font-weight: 800;`)
+        // @see https://stylelint.io/user-guide/rules/font-weight-notation
+        'font-weight-notation': 'numeric',
+
+        // - Les `urls` doivent toujours contenir des quotes.
+        // @see https://stylelint.io/user-guide/rules/function-url-quotes
+        'function-url-quotes': 'always',
+
+        // - Les valeurs de teinte dans les couleurs doivent explicitement utiliser l'unité `deg`.
+        // @see https://stylelint.io/user-guide/rules/hue-degree-notation
+        'hue-degree-notation': 'angle',
+
+        // - Une indentation de 4 espaces doit être utilisée.
+        // @see https://stylelint.io/user-guide/rules/indentation
+        'indentation': 4,
+
+        // - Les keyframess doivent être "hyphenated" et ne pas:
+        //   Elles ne doivent pas commencer par un chiffre et finir par un tiret.
+        //   (e.g. `@keyframes MonBlock-mon-animation {}`)
+        // @see https://stylelint.io/user-guide/rules/keyframes-name-pattern/
+        // @see https://regex101.com/r/hOtFsR/1
+        'keyframes-name-pattern': /^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,
+
+        // - S'assure que les saut de lignes sont bien des sauts de ligne unix.
+        // @see https://stylelint.io/user-guide/rules/linebreaks
+        'linebreaks': 'unix',
+
+        // - Limite la profondeur d'imbrication des règles à 5.
+        // @see https://stylelint.io/user-guide/rules/max-nesting-depth
+        'max-nesting-depth': 5,
+
+        // - Pas de préfixe navigateur pour les @-rule (e.g. `@media (-webkit-min-device-pixel-ratio: 1) {}`)
+        //   (ils sont ajoutés automatiquement par l'autoprefixer)
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-no-vendor-prefix
+        'media-feature-name-no-vendor-prefix': true,
+
+        // - Empêche la duplication des selecteurs.
+        // @see https://stylelint.io/user-guide/rules/no-duplicate-selectors
+        'no-duplicate-selectors': true,
+
+        // - Interdit les lignes vides en début de fichier de style.
+        // @see https://stylelint.io/user-guide/rules/no-empty-first-line
+        'no-empty-first-line': true,
+
+        // - Les lignes ne doivent pas faire plus de 120 caractères de long.
+        //   (sauf pour les commentaires)
+        // @see https://stylelint.io/user-guide/rules/max-line-length
+        'max-line-length': [120, { ignore: ['comments'] }],
+
+        // - Pas de "0." devant les nombres.
+        // @see https://stylelint.io/user-guide/rules/number-leading-zero
+        'number-leading-zero': 'never',
+
+        // - Précision max des nombres à 4 chiffres après la virgule.
+        // @see https://stylelint.io/user-guide/rules/number-max-precision
+        'number-max-precision': 4,
+
+        // - S'assure du bon ordre des éléments dans les blocks de déclaration CSS.
+        //
+        //   ```scss
+        //   .test {
+        //       $ma-var: #fff;
+        //
+        //       @extend %error;
+        //       @include icon(plus);
+        //
+        //       display : block:
+        //       color   : $ma-var;
+        //
+        //       @include machin() {
+        //           color: red;
+        //       }
+        //
+        //       &__sub {
+        //           text-align: left;
+        //       }
+        //
+        //       @media print {
+        //           .btn {
+        //               color: red;
+        //           }
+        //       }
+        //   }
+        //   ```
+        //
+        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
+        'order/order': [
+            // - Variables
+            'dollar-variables',
+            'custom-properties',
+
+            // - @extend
+            { type: 'at-rule', name: 'extend' },
+
+            // - @include without inner content.
+            { type: 'at-rule', name: 'include', hasBlock: false },
+
+            // - Properties
+            'declarations',
+
+            // - @include with inner content.
+            { type: 'at-rule', name: 'include', hasBlock: true },
+
+            // - Sub-rules
+            'rules',
+            { type: 'at-rule', name: 'at-root', hasBlock: true },
+
+            // - @media (...) {}
+            { type: 'at-rule', name: 'media', hasBlock: true },
+
+            // - @content
+            { type: 'at-rule', name: 'content' },
+        ],
+
+        // - S'assure du bon ordre des propriétés.
+        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
+        'order/properties-order': [
+            require('./data/properties-order'),
+            { unspecified: 'bottom' },
+        ],
+
+        // - Empêche l'utilisation de propriétés incompatibles entres-elles.
+        //   (e.g. `display: inline; margin-top: 10px;`)
+        // @see https://github.com/kristerkari/stylelint-declaration-block-no-ignored-properties
+        'plugin/declaration-block-no-ignored-properties': true,
+
+        // - Interdit les propriétés inconnues.
+        // @see https://stylelint.io/user-guide/rules/property-no-unknown
+        'property-no-unknown': true,
+
+        // - Pas de préfixe navigateur pour les propriétés (e.g. `-webkit-transform: scale(1);`)
+        //   (ils sont ajoutés automatiquement par l'autoprefixer)
+        // @see https://stylelint.io/user-guide/rules/property-no-vendor-prefix
+        'property-no-vendor-prefix': true,
+
+        // - Les selecteurs d'attributs doivent toujours contenir des quotes.
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-quotes
+        'selector-attribute-quotes': 'always',
+
+        // - Vérifie la syntaxe des selecteurs qui doit correspondre à nos conventions BEM.
+        //
+        //   ```scss
+        //   // - Selecteurs valides:
+        //   .Block--modifier {}
+        //   .block-name__element--modifier {}
+        //   .BlockName__element--modifier {}
+        //   .block__element-name--modifier-name {}
+        //   .My-block {}
+        //   .my-block {}
+        //   .MyBlock__subblock__element {}
+        //   .MyBlock__subblock__element--modifier {}
+        //
+        //   // - Selecteurs invalides
+        //   .block-Name {}
+        //   .Block_name {}
+        //   .BlockName_element-modifier {}
+        //   .0name__element {}
+        //   .B__element {}
+        //   .b__element {}
+        //   .Block__ele_ment {}
+        //   ```
+        //
+        // @see https://stylelint.io/user-guide/rules/selector-class-pattern
+        'selector-class-pattern': [
+            (() => {
+                // @see https://regex101.com/r/ufksHO/2
+                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]+(?:-[a-z0-9]+)*)';
+
+                // @see https://regex101.com/r/8g3k8D/3
+                const WORD = '[a-z0-9]+(?:-[a-z0-9]+)*';
+                return `^${BLOCK}(?:__${WORD})*(?:--${WORD})?$`;
+            })(),
+            { resolveNestedSelectors: true, message: `Invalid BEM selector.` },
+        ],
+
+        // - Les selecteurs d'ids doivent être en "hyphenated lowercase".
+        //   Ils ne doivent pas commencer par un chiffre et finir par un tiret.
+        //   (e.g. `#mon-selecteur`)
+        // @see https://stylelint.io/user-guide/rules/selector-id-pattern
+        // @see https://regex101.com/r/leWMWP/2
+        'selector-id-pattern': /^[a-z](?:[a-z0-9-]*[a-z0-9])?$/,
+
+        // - Lorsque plusieurs selecteurs sont sur la même ligne (ce qui ne devrait pas arriver),
+        //   il devrait y avoir un espace après la virgule entre chaque selecteur.
+        // @see https://stylelint.io/user-guide/rules/selector-list-comma-space-after
+        'selector-list-comma-space-after': 'always-single-line',
+
+        // @see https://stylelint.io/user-guide/rules/selector-max-compound-selectors
+        'selector-max-compound-selectors': 3,
+
+        // - Limite à 1 le nombre d'attribut dans un selecteur.
+        // @see https://stylelint.io/user-guide/rules/selector-max-attribute
+        'selector-max-attribute': 1,
+
+        // - Limite à 5 le nombre de classe dans un selecteur. (e.g. `.foo.bar .baz > .buz`)
+        // @see https://stylelint.io/user-guide/rules/selector-max-class
+        'selector-max-class': 5,
+
+        // - Limite à 4 le nombre de "combinateurs" dans un selecteur. (e.g. `.foo .bar > .baz`)
+        // @see https://stylelint.io/user-guide/rules/selector-max-combinators
+        'selector-max-combinators': 4,
+
+        // - Limite à 1 le nombre d'ids dans un selecteur (e.g. `#foo #bar`)
+        //   (Notons que s'il y en a pas du tout c'est encore mieux)
+        // @see https://stylelint.io/user-guide/rules/selector-max-id
+        'selector-max-id': 0,
+
+        // - Limite à 3 le nombre de pseudo-classes dans une sélécteur. (e.g. `.foo:hover:active:focus`)
+        // @see https://stylelint.io/user-guide/rules/selector-max-pseudo-class
+        'selector-max-pseudo-class': 3,
+
+        // - Empêche l'utilisation des selecteurs de type (e.g. `a {}`, 'html {}')
+        // @see https://stylelint.io/user-guide/rules/selector-max-type
+        'selector-max-type': [0, {
+            ignore: ['compounded'],
+            message: `Type selectors are not allowed.`,
+        }],
+
+        // - Empêche l'utilisation du selecteur universel. (e.g. `.btn *`)
+        // @see https://stylelint.io/user-guide/rules/selector-max-universal
+        'selector-max-universal': [0, {
+            message: `Universal selectors are not allowed.`,
+        }],
+
+        // - Empêche l'utilisation d'un prefixe de type devant les selecteurs. (e.g. `a.link`)
+        //   La règle est toutefois désactivé pour les attributs (`input[type=text]`)
+        // @see https://stylelint.io/user-guide/rules/selector-no-qualifying-type
+        'selector-no-qualifying-type': [true, {
+            ignore: ['attribute'],
+        }],
+
+        // - Pas de préfixe navigateur pour les selecteurs (e.g. `input::-moz-placeholder`)
+        //   (ils sont ajoutés automatiquement par l'autoprefixer)
+        // @see https://stylelint.io/user-guide/rules/selector-no-vendor-prefix
+        'selector-no-vendor-prefix': true,
+
+        // - Interdit l'utilisation de valeurs redondantes dans les propriétés combinées.
+        //
+        // @example
+        // ```scss
+        // .foo { margin: 1px; }
+        // .bar { padding: 0 auto 10px: }
+        //
+        // // ET NON:
+        //
+        // .foo { margin: 1px 1px 1px 1px; }
+        // .bar { padding: 0 auto 10px auto; }
+        // ```
+        //
+        // @see https://stylelint.io/user-guide/rules/shorthand-property-no-redundant-values
+        'shorthand-property-no-redundant-values': true,
+
+        // - Des quotes simples doivent être utilisées.
+        // @see https://stylelint.io/user-guide/rules/string-quotes
+        'string-quotes': 'single',
+
+        // - Le temps minimum appliqué dans les animations, transitions, etc. doit être de 100ms.
+        //   (sauf pour les delais (e.g. `transition-delay`))
+        // @see https://stylelint.io/user-guide/rules/time-min-milliseconds
+        'time-min-milliseconds': [100, {
+            ignore: ['delay'],
+        }],
+
+        // - Limite les unités autorisées pour l'homogénéité du code.
+        // @see https://stylelint.io/user-guide/rules/unit-whitelist
+        'unit-whitelist': ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
+
+        // - Les mots-clés valeurs doivent être en minuscules.
+        // @see https://stylelint.io/user-guide/rules/value-keyword-case
+        'value-keyword-case': ['lower', {
+            // - Ignore les variables (faux positifs avec les noms de police dans les variables)
+            ignoreProperties: [/^\$/],
+        }],
+
+        // - Pas de préfixe navigateur pour les valeurs (e.g. `display: -webkit-flex;`)
+        //   (ils sont ajoutés automatiquement par l'autoprefixer)
+        // @see https://stylelint.io/user-guide/rules/value-no-vendor-prefix
+        'value-no-vendor-prefix': true,
+
+        // - S'assure de l'absence de BOM.
+        // @see https://stylelint.io/user-guide/rules/unicode-bom
+        'unicode-bom': 'never',
+
+        // - Interdit l'utilisation de certaines unités.
+        //   (cf. https://developer.mozilla.org/fr/docs/Web/CSS/Types_CSS pour les unités)
+        // @see https://stylelint.io/user-guide/rules/unit-blacklist
+        'unit-blacklist': [
+            'rad', 'vmin', 'vmax', 'cm', 'ex',
+            'pc', 'in', 'ch', 'ic', 'rlh',
+            'vi', 'vb', 'q', 'mozmm', 'cap', 'turn',
+            'grad', 'dpi', 'dpcm', 'dppx',
+        ],
+
+        //
+        // - Disabled rules
+        //
+
+        // @see https://stylelint.io/user-guide/rules/at-rule-blacklist
+        'at-rule-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/at-rule-name-newline-after
+        'at-rule-name-newline-after': null,
+
+        // @see https://stylelint.io/user-guide/rules/at-rule-whitelist
+        'at-rule-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/block-opening-brace-newline-before
+        'block-opening-brace-newline-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/block-closing-brace-space-after
+        'block-closing-brace-space-after': null,
+
+        // @see https://stylelint.io/user-guide/rules/color-no-hex
+        'color-no-hex': null,
+
+        // - Disabled because of rtlcss that uses /*rtl:ignore*/ comments ...
+        // @see https://stylelint.io/user-guide/rules/comment-whitespace-inside
+        'comment-whitespace-inside': null,
+
+        // @see https://stylelint.io/user-guide/rules/comment-word-blacklist
+        'comment-word-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/custom-media-pattern
+        'custom-media-pattern': null,
+
+        // @see https://stylelint.io/user-guide/rules/declaration-block-semicolon-newline-before
+        'declaration-block-semicolon-newline-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/declaration-empty-line-before
+        'declaration-empty-line-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/declaration-property-value-blacklist/
+        'declaration-property-value-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/declaration-property-value-whitelist
+        'declaration-property-value-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-blacklist/
+        'declaration-property-unit-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-blacklist
+        'function-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-comma-newline-before
+        'function-comma-newline-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-url-no-scheme-relative
+        'function-url-no-scheme-relative': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-url-scheme-blacklist
+        'function-url-scheme-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-url-scheme-whitelist
+        'function-url-scheme-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/function-whitelist
+        'function-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-blacklist
+        'media-feature-name-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-value-whitelist
+        'media-feature-name-value-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-whitelist
+        'media-feature-name-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/media-query-list-comma-newline-before
+        'media-query-list-comma-newline-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/no-descending-specificity
+        'no-descending-specificity': null,
+
+        // @see https://stylelint.io/user-guide/rules/no-unknown-animations
+        'no-unknown-animations': null,
+
+        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-alphabetical-order/README.md
+        'order/properties-alphabetical-order': null,
+
+        // @see https://stylelint.io/user-guide/rules/property-blacklist
+        'property-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/property-whitelist
+        'property-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-blacklist
+        'selector-attribute-operator-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-whitelist
+        'selector-attribute-operator-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-combinator-blacklist
+        'selector-combinator-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-combinator-whitelist
+        'selector-combinator-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-list-comma-newline-before
+        'selector-list-comma-newline-before': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-max-specificity
+        'selector-max-specificity': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-nested-pattern
+        'selector-nested-pattern': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-blacklist
+        'selector-pseudo-class-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-whitelist
+        'selector-pseudo-class-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-blacklist
+        'selector-pseudo-element-blacklist': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-whitelist
+        'selector-pseudo-element-whitelist': null,
+
+        // @see https://stylelint.io/user-guide/rules/value-list-comma-newline-before
+        'value-list-comma-newline-before': null,
+    },
+};
