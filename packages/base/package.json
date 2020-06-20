@@ -1,9 +1,17 @@
 {
     "name": "@pulsanova/stylelint-config-base",
     "version": "0.0.0",
-    "private": true,
     "main": "index.js",
-    "keywords": ["stylelint", "stylelint-config"],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:Pulsanova/Stylelint.git",
+        "directory": "packages/base"
+    },
+    "keywords": [
+        "stylelint",
+        "stylelint-config"
+    ],
     "scripts": {
         "find-new-rules": "stylelint-find-new-rules ./index.js"
     },
@@ -18,5 +26,8 @@
     },
     "peerDependencies": {
         "stylelint": "^13.6.1"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     }
 }
