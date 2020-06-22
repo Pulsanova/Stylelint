@@ -216,6 +216,18 @@ module.exports = {
             { type: 'at-rule', name: 'at-root', hasBlock: true },
 
             // - @media (...) {}
+            {
+                type: 'at-rule',
+                name: 'include',
+                parameter: 'media-min',
+                hasBlock: true,
+            },
+            {
+                type: 'at-rule',
+                name: 'include',
+                parameter: 'media-max',
+                hasBlock: true,
+            },
             { type: 'at-rule', name: 'media', hasBlock: true },
 
             // - @content
