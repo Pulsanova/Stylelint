@@ -25,7 +25,7 @@ module.exports = {
                 'first-nested',
             ],
             ignore: ['after-comment'],
-            ignoreAtRules: ['if', 'else', 'return', 'content', 'import'],
+            ignoreAtRules: ['if', 'else', 'return', 'content', 'import', 'use', 'forward'],
         }],
 
         // - Pas de préfixe navigateur pour les @-rule (e.g. `@-webkit-keyframes`)
