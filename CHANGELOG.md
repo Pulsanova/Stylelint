@@ -1,3 +1,8 @@
+## 0.2.0 (2020-07-17)
+- Autorise les préfixes `_` dans les variables.  
+  (Ceci pour permettre de "déclarer" la visibilité du membre)
+- Permet l'absence de namespace dans les noms de variables vu l'arrivée de `@use`. 
+
 ## 0.1.2 (2020-07-16)
 - Met à jour les dépendances de développement.
 - Corrige le suppport des `@use` et `@forward` en SCSS.
