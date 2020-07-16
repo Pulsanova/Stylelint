@@ -1,4 +1,4 @@
-## 0.1.2 (unreleased)
+## 0.1.2 (2020-07-16)
 - Met à jour les dépendances de développement.
 - Corrige le suppport des `@use` et `@forward` en SCSS.
 
