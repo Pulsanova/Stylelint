@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2020-07-17)
 - Autorise les préfixes `_` dans les variables.  
   (Ceci pour permettre de "déclarer" la visibilité du membre)
 - Permet l'absence de namespace dans les noms de variables vu l'arrivée de `@use`. 
