@@ -137,8 +137,8 @@ module.exports = {
         //   Notons que la règle du namespace obligatoire ne s'applique pas aux variables "locales".
         //   (e.g. `.block { $var: blue; }`)
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-pattern/
-        // @see https://regex101.com/r/EmOM1V/3
-        'scss/dollar-variable-pattern': [/^[a-z][a-z0-9]+(?:-[a-z0-9]+)+$/, {
+        // @see https://regex101.com/r/EmOM1V/4
+        'scss/dollar-variable-pattern': [/^_?[a-z][a-z0-9]+(?:-[a-z0-9]+)+$/, {
             ignore: 'local',
             message: `Expected variable name to match this pattern: \`$namespace-[domain[-...]]\``,
         }],
