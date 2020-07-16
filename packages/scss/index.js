@@ -130,17 +130,11 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-no-missing-interpolation
         'scss/dollar-variable-no-missing-interpolation': true,
 
-        // - Vérifie le nommage des variables.
-        //   Celles-ci doivent toujours être en "kebab-case", il doit aussi obligatoirement être composé
-        //   d'au moins deux partie: Un namespace et un identifiant sous la forme `[namespace]-[ident]`.
-        //   L'identifiant peu bien sur comporter des tirets (e.g. `$namespace-background-color`).
-        //   Notons que la règle du namespace obligatoire ne s'applique pas aux variables "locales".
-        //   (e.g. `.block { $var: blue; }`)
+        // - Vérifie le nommage des variables. Celles-ci doivent toujours être en "kebab-case".
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-pattern/
-        // @see https://regex101.com/r/EmOM1V/4
-        'scss/dollar-variable-pattern': [/^_?[a-z][a-z0-9]+(?:-[a-z0-9]+)+$/, {
-            ignore: 'local',
-            message: `Expected variable name to match this pattern: \`$namespace-[domain[-...]]\``,
+        // @see https://regex101.com/r/EmOM1V/7
+        'scss/dollar-variable-pattern': [/^_?[a-z][a-z0-9]+(?:-[a-z0-9]+)*$/, {
+            message: `Expected variable name to match this pattern: \`$name[-...]]\``,
         }],
 
         // - Il doit toujours y avoir une ligne vide avant les commentaires double-slash, sauf:

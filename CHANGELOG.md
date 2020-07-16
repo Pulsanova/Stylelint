@@ -1,6 +1,7 @@
-## 0.1.3 (unreleased)
-- Autorise les préfixes `_` dans les fonctions, mixins et variables.  
+## 0.2.0 (unreleased)
+- Autorise les préfixes `_` dans les variables.  
   (Ceci pour permettre de "déclarer" la visibilité du membre)
+- Permet l'absence de namespace dans les noms de variables vu l'arrivée de `@use`. 
 
 ## 0.1.2 (2020-07-16)
 - Met à jour les dépendances de développement.
