@@ -43,8 +43,16 @@ module.exports = {
         'scss/at-extend-no-missing-placeholder': true,
 
         // - Pas d'argument nommés dans les appels de fonction.
+        //   (sauf certaines fonctions du core de sass necessitant des arguments nommés)
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-function-named-arguments
-        'scss/at-function-named-arguments': 'never',
+        'scss/at-function-named-arguments': ['never', {
+            ignoreFunctions: [
+                'color.scale',
+                'color.change',
+                'list.join',
+                'meta.get-function',
+            ],
+        }],
 
         // - Vérifie le non nommage des mixins, fonctions et placeholders.
         //   Ceux-ci doivent appliquer les même règles que pour le nommage des components à la différence
