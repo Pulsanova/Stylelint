@@ -1,3 +1,7 @@
+## 1.0.0 (unreleased)
+- Première version "stable".
+- Met à jour les dépendances de développement.
+
 ## 0.2.0 (2020-07-17)
 - Autorise les préfixes `_` dans les variables.  
   (Ceci pour permettre de "déclarer" la visibilité du membre)

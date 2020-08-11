@@ -6,8 +6,8 @@
         "publish-all": "lerna publish from-package"
     },
     "devDependencies": {
-        "@pulsanova/eslint-config-base": "^0.3.1",
-        "eslint": "~7.4.0",
+        "@pulsanova/eslint-config-base": "^1.0.0",
+        "eslint": "~7.6.0",
         "lerna": "^3.22.1"
     }
 }
