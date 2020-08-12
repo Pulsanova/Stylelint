@@ -1,4 +1,4 @@
-## 1.0.0 (unreleased)
+## 1.0.0 (2020-08-11)
 - Première version "stable".
 - Met à jour les dépendances de développement.
 - Ajoute des fonctions du core de SASS dans les exceptions de la règles 
