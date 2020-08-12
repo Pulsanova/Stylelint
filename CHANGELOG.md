@@ -1,3 +1,10 @@
+## 1.0.0 (2020-08-11)
+- Première version "stable".
+- Met à jour les dépendances de développement.
+- Ajoute des fonctions du core de SASS dans les exceptions de la règles 
+  `scss/at-function-named-arguments` vu que les arguments nommés dans ce
+  cas servent d'indicateurs.
+
 ## 0.2.0 (2020-07-17)
 - Autorise les préfixes `_` dans les variables.  
   (Ceci pour permettre de "déclarer" la visibilité du membre)
