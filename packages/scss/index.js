@@ -49,6 +49,7 @@ module.exports = {
             ignoreFunctions: [
                 'color.scale',
                 'color.change',
+                'color.adjust',
                 'list.join',
                 'meta.get-function',
             ],
