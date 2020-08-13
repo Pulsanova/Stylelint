@@ -1,7 +1,10 @@
+## 1.0.1 (2020-08-13)
+- Corrige les exceptions de la règle `scss/at-function-named-arguments`.
+
 ## 1.0.0 (2020-08-11)
 - Première version "stable".
 - Met à jour les dépendances de développement.
-- Ajoute des fonctions du core de SASS dans les exceptions de la règles 
+- Ajoute des fonctions du core de SASS dans les exceptions de la règle 
   `scss/at-function-named-arguments` vu que les arguments nommés dans ce
   cas servent d'indicateurs.
 
