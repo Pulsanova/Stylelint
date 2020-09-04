@@ -1,4 +1,4 @@
-## 1.0.2 (unreleased)
+## 1.0.2 (2020-09-04)
 - Met à jour les dépendances.
 - Remplace les règles dépréciées par les nouvelles règles équivalentes.
 
