@@ -35,8 +35,8 @@ module.exports = {
 
         // - S'assure que certaines at-rules normalisées contiennent bien toutes les propriétés requises:
         //   - `@font-face`: Doit contenir au minimum les propriétés: `font-family`, `font-weight`, `font-style` et `src`.
-        // @see https://stylelint.io/user-guide/rules/at-rule-property-requirelist
-        'at-rule-property-requirelist': {
+        // @see https://stylelint.io/user-guide/rules/at-rule-property-required-list
+        'at-rule-property-required-list': {
             'font-face': ['font-family', 'font-weight', 'font-style', 'src'],
         },
 
@@ -91,8 +91,8 @@ module.exports = {
         'declaration-no-important': true,
 
         // - Restreint les unités utilisables (pour l'homogénéisation de la codebase).
-        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-whitelist
-        'declaration-property-unit-whitelist': {
+        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-allowed-list
+        'declaration-property-unit-allowed-list': {
             /* eslint-disable key-spacing */
             'line-height'             : ['px', 'pt', 'mm', 'em', 'rem'],
             'font-size'               : ['px', 'pt', 'em', 'rem'],
@@ -384,8 +384,8 @@ module.exports = {
         }],
 
         // - Limite les unités autorisées pour l'homogénéité du code.
-        // @see https://stylelint.io/user-guide/rules/unit-whitelist
-        'unit-whitelist': ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
+        // @see https://stylelint.io/user-guide/rules/unit-allowed-list
+        'unit-allowed-list': ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
 
         // - Les mots-clés valeurs doivent être en minuscules.
         // @see https://stylelint.io/user-guide/rules/value-keyword-case
@@ -405,8 +405,8 @@ module.exports = {
 
         // - Interdit l'utilisation de certaines unités.
         //   (cf. https://developer.mozilla.org/fr/docs/Web/CSS/Types_CSS pour les unités)
-        // @see https://stylelint.io/user-guide/rules/unit-blacklist
-        'unit-blacklist': [
+        // @see https://stylelint.io/user-guide/rules/unit-disallowed-list
+        'unit-disallowed-list': [
             'rad', 'vmin', 'vmax', 'cm', 'ex',
             'pc', 'in', 'ch', 'ic', 'rlh',
             'vi', 'vb', 'q', 'mozmm', 'cap', 'turn',
@@ -417,14 +417,14 @@ module.exports = {
         // - Disabled rules
         //
 
-        // @see https://stylelint.io/user-guide/rules/at-rule-blacklist
-        'at-rule-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/at-rule-disallowed-list
+        'at-rule-disallowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/at-rule-name-newline-after
         'at-rule-name-newline-after': null,
 
-        // @see https://stylelint.io/user-guide/rules/at-rule-whitelist
-        'at-rule-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/at-rule-allowed-list
+        'at-rule-allowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/block-opening-brace-newline-before
         'block-opening-brace-newline-before': null,
@@ -439,8 +439,8 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/comment-whitespace-inside
         'comment-whitespace-inside': null,
 
-        // @see https://stylelint.io/user-guide/rules/comment-word-blacklist
-        'comment-word-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/comment-word-disallowed-list
+        'comment-word-disallowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/custom-media-pattern
         'custom-media-pattern': null,
@@ -451,17 +451,17 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/declaration-empty-line-before
         'declaration-empty-line-before': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-value-blacklist/
-        'declaration-property-value-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/declaration-property-value-disallowed-list/
+        'declaration-property-value-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-value-whitelist
-        'declaration-property-value-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/declaration-property-value-allowed-list
+        'declaration-property-value-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-blacklist/
-        'declaration-property-unit-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-disallowed-list/
+        'declaration-property-unit-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-blacklist
-        'function-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/function-disallowed-list
+        'function-disallowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/function-comma-newline-before
         'function-comma-newline-before': null,
@@ -469,23 +469,23 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/function-url-no-scheme-relative
         'function-url-no-scheme-relative': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-url-scheme-blacklist
-        'function-url-scheme-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/function-url-scheme-disallowed-list
+        'function-url-scheme-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-url-scheme-whitelist
-        'function-url-scheme-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/function-url-scheme-allowed-list
+        'function-url-scheme-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-whitelist
-        'function-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/function-allowed-list
+        'function-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-blacklist
-        'media-feature-name-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-disallowed-list
+        'media-feature-name-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-value-whitelist
-        'media-feature-name-value-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-value-allowed-list
+        'media-feature-name-value-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-whitelist
-        'media-feature-name-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/media-feature-name-allowed-list
+        'media-feature-name-allowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/media-query-list-comma-newline-before
         'media-query-list-comma-newline-before': null,
@@ -499,23 +499,23 @@ module.exports = {
         // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-alphabetical-order/README.md
         'order/properties-alphabetical-order': null,
 
-        // @see https://stylelint.io/user-guide/rules/property-blacklist
-        'property-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/property-disallowed-list
+        'property-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/property-whitelist
-        'property-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/property-allowed-list
+        'property-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-blacklist
-        'selector-attribute-operator-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-disallowed-list
+        'selector-attribute-operator-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-whitelist
-        'selector-attribute-operator-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-allowed-list
+        'selector-attribute-operator-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-combinator-blacklist
-        'selector-combinator-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-combinator-disallowed-list
+        'selector-combinator-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-combinator-whitelist
-        'selector-combinator-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-combinator-allowed-list
+        'selector-combinator-allowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/selector-list-comma-newline-before
         'selector-list-comma-newline-before': null,
@@ -526,17 +526,17 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/selector-nested-pattern
         'selector-nested-pattern': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-blacklist
-        'selector-pseudo-class-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-disallowed-list
+        'selector-pseudo-class-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-whitelist
-        'selector-pseudo-class-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-allowed-list
+        'selector-pseudo-class-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-blacklist
-        'selector-pseudo-element-blacklist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-disallowed-list
+        'selector-pseudo-element-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-whitelist
-        'selector-pseudo-element-whitelist': null,
+        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-allowed-list
+        'selector-pseudo-element-allowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/value-list-comma-newline-before
         'value-list-comma-newline-before': null,

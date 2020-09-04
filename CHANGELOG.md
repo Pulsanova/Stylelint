@@ -1,3 +1,7 @@
+## 1.0.2 (2020-09-04)
+- Met à jour les dépendances.
+- Remplace les règles dépréciées par les nouvelles règles équivalentes.
+
 ## 1.0.1 (2020-08-13)
 - Corrige les exceptions de la règle `scss/at-function-named-arguments`.
 

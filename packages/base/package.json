@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/stylelint-config-base",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "index.js",
     "license": "MIT",
     "repository": {
@@ -21,11 +21,11 @@
         "stylelint-order": "~4.1.0"
     },
     "devDependencies": {
-        "stylelint": "^13.6.1",
-        "stylelint-find-new-rules": "^2.0.0"
+        "stylelint": "^13.7.0",
+        "stylelint-find-new-rules": "^3.0.0"
     },
     "peerDependencies": {
-        "stylelint": "^13.6.1"
+        "stylelint": "^13.7.0"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
