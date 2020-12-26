@@ -435,6 +435,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/color-no-hex
         'color-no-hex': null,
 
+        // @see https://stylelint.io/user-guide/rules/comment-pattern
+        'comment-pattern': null,
+
         // - Disabled because of rtlcss that uses /*rtl:ignore*/ comments ...
         // @see https://stylelint.io/user-guide/rules/comment-whitespace-inside
         'comment-whitespace-inside': null,
@@ -504,6 +507,9 @@ module.exports = {
 
         // @see https://stylelint.io/user-guide/rules/property-allowed-list
         'property-allowed-list': null,
+
+        // @see https://stylelint.io/user-guide/rules/selector-attribute-name-disallowed-list
+        'selector-attribute-name-disallowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-disallowed-list
         'selector-attribute-operator-disallowed-list': null,
