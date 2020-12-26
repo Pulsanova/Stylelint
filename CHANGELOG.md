@@ -1,4 +1,4 @@
-## 1.1.0 (unreleased)
+## 1.1.0 (2020-12-26)
 - Met à jour les dépendances.
 
 ## 1.0.2 (2020-09-04)

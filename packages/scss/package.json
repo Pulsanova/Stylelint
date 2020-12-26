@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/stylelint-config-scss",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "main": "index.js",
     "license": "MIT",
     "repository": {
@@ -16,7 +16,7 @@
         "find-new-rules": "stylelint-find-new-rules ./index.js"
     },
     "dependencies": {
-        "@pulsanova/stylelint-config-base": "1.0.2",
+        "@pulsanova/stylelint-config-base": "1.1.0",
         "stylelint-scss": "~3.18.0"
     },
     "devDependencies": {
