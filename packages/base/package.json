@@ -26,8 +26,5 @@
     },
     "peerDependencies": {
         "stylelint": "^13.8.0"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
     }
 }
