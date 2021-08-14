@@ -1,4 +1,4 @@
-## 1.2.1 (2021-08-14)
+## 1.2.(1-2) (2021-08-14)
 - Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.
 
 ## 1.2.0 (2021-08-14)
