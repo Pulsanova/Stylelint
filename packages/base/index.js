@@ -157,9 +157,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/max-line-length
         'max-line-length': [120, { ignore: ['comments'] }],
 
-        // - Pas de "0." devant les nombres.
+        // - Toujours ajouter le "0." devant les nombres.
         // @see https://stylelint.io/user-guide/rules/number-leading-zero
-        'number-leading-zero': 'never',
+        'number-leading-zero': 'always',
 
         // - Précision max des nombres à 4 chiffres après la virgule.
         // @see https://stylelint.io/user-guide/rules/number-max-precision

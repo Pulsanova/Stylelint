@@ -1,5 +1,7 @@
 ## 1.2.0 (UNRELEASED)
 - Met à jour les dépendances.
+- Inverse la règle `number-leading-zero`: Il faut dorénavant toujours mettre le 0 devant les nombres.  
+  En effet, ne pas le mettre dans certain cas provoque un comportement inattendu (avec les fonctions CSS en particulier).
 
 ## 1.1.0 (2020-12-26)
 - Met à jour les dépendances.
