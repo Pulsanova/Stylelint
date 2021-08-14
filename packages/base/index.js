@@ -96,8 +96,8 @@ module.exports = {
             /* eslint-disable key-spacing */
             'line-height'             : ['px', 'pt', 'mm', 'em', 'rem'],
             'font-size'               : ['px', 'pt', 'em', 'rem'],
-            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%'],
-            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%'],
+            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%', 'rem'],
+            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%', 'rem'],
             'vertical-align'          : ['px', 'pt', 'em', 'rem'],
             '/.*/'                    : ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
             /* eslint-enable key-spacing */
