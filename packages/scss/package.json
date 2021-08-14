@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/stylelint-config-scss",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "main": "index.js",
     "license": "MIT",
     "repository": {
@@ -16,17 +16,14 @@
         "find-new-rules": "stylelint-find-new-rules ./index.js"
     },
     "dependencies": {
-        "@pulsanova/stylelint-config-base": "1.1.0",
-        "stylelint-scss": "~3.18.0"
+        "@pulsanova/stylelint-config-base": "1.2.0",
+        "stylelint-scss": "~3.20.1"
     },
     "devDependencies": {
-        "stylelint": "^13.8.0",
-        "stylelint-find-new-rules": "^3.0.1"
+        "stylelint": "^13.13.1",
+        "stylelint-find-new-rules": "^3.0.2"
     },
     "peerDependencies": {
-        "stylelint": "^13.8.0"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+        "stylelint": "^13.13.1"
     }
 }

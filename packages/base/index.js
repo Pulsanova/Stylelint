@@ -96,8 +96,8 @@ module.exports = {
             /* eslint-disable key-spacing */
             'line-height'             : ['px', 'pt', 'mm', 'em', 'rem'],
             'font-size'               : ['px', 'pt', 'em', 'rem'],
-            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%'],
-            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%'],
+            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%', 'rem'],
+            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%', 'rem'],
             'vertical-align'          : ['px', 'pt', 'em', 'rem'],
             '/.*/'                    : ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
             /* eslint-enable key-spacing */
@@ -157,9 +157,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/max-line-length
         'max-line-length': [120, { ignore: ['comments'] }],
 
-        // - Pas de "0." devant les nombres.
+        // - Toujours ajouter le "0." devant les nombres.
         // @see https://stylelint.io/user-guide/rules/number-leading-zero
-        'number-leading-zero': 'never',
+        'number-leading-zero': 'always',
 
         // - Précision max des nombres à 4 chiffres après la virgule.
         // @see https://stylelint.io/user-guide/rules/number-max-precision
@@ -523,6 +523,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/selector-combinator-allowed-list
         'selector-combinator-allowed-list': null,
 
+        // @see https://stylelint.io/user-guide/rules/list/selector-disallowed-list/
+        'selector-disallowed-list': null,
+
         // @see https://stylelint.io/user-guide/rules/selector-list-comma-newline-before
         'selector-list-comma-newline-before': null,
 
@@ -547,4 +550,5 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/value-list-comma-newline-before
         'value-list-comma-newline-before': null,
     },
+    reportNeedlessDisables: true,
 };
