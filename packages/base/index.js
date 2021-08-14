@@ -523,6 +523,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/selector-combinator-allowed-list
         'selector-combinator-allowed-list': null,
 
+        // @see https://stylelint.io/user-guide/rules/list/selector-disallowed-list/
+        'selector-disallowed-list': null,
+
         // @see https://stylelint.io/user-guide/rules/selector-list-comma-newline-before
         'selector-list-comma-newline-before': null,
 
@@ -547,4 +550,5 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/value-list-comma-newline-before
         'value-list-comma-newline-before': null,
     },
+    reportNeedlessDisables: true,
 };
