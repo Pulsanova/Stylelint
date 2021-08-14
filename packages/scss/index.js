@@ -47,9 +47,17 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-function-named-arguments
         'scss/at-function-named-arguments': ['never', {
             ignoreFunctions: [
+                'color-scale',
+                'change-color',
+                'change-color',
+                'adjust-color',
+                'invert',
+                'mix',
                 'color.scale',
                 'color.change',
                 'color.adjust',
+                'color.invert',
+                'color.mix',
                 'list.join',
                 'meta.get-function',
             ],
