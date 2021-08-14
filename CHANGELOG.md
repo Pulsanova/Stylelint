@@ -1,3 +1,6 @@
+## 1.2.1 (unreleased)
+- Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.
+
 ## 1.2.0 (2021-08-14)
 - Met à jour les dépendances.
 - Inverse la règle `number-leading-zero`: Il faut dorénavant toujours mettre le 0 devant les nombres.  
