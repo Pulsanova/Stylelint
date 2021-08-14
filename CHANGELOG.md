@@ -1,3 +1,6 @@
+## 1.2.0 (UNRELEASED)
+- Met à jour les dépendances.
+
 ## 1.1.0 (2020-12-26)
 - Met à jour les dépendances.
 
