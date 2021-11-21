@@ -4,10 +4,18 @@
   - Il est maintenant possible de dupliquer une propriété si la valeur contient un préfixe 
     navigateur différent à chaque fois (e.g. `width: fit-content; width: -moz-fit-content;`).
   - Les keyframess ne doivent pas contenir un mix de CamelCase et de lower kebab-case (e.g. `@keyframes mon-block-MalNommé {}`).
+  - Les `@use` sont maintenant autorisés à être placés avant les `@import`.
 - Nouvelles règles :
   - Le linting s'assure maintenant que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
   - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
+  - Le linting s'assure que la fonction `quote` n'est pas utilisée avec une chaîne déjà quotée.
   - Interdit les espaces irréguliers (e.g. `\u00A0`, etc.).
+  - Interdit les commentaires vides aussi en SCSS.
+  - Il doit dorénavant toujours y avoir une ligne vide avant les variables, sauf:
+    - Si la variable suit une autre variable.
+    - Si la variable suit un commentaire.
+    - Si la variable est le première élément dans un block.
+    - Si la variable se situe dans un block d'une seule ligne.
 
 ## 1.2.(1-2) (2021-08-14)
 - Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.

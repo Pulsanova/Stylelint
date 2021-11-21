@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+    customSyntax: require('postcss-scss'),
     extends: '@pulsanova/stylelint-config-base',
     plugins: ['stylelint-scss'],
     rules: {
@@ -14,6 +15,18 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
         'block-closing-brace-newline-after': ['always', {
             ignoreAtRules: ['if', 'else'],
+        }],
+
+        // (Prise en charge SASS, voir parent)
+        // @see https://stylelint.io/user-guide/rules/list/comment-no-empty
+        // @see https://github.com/stylelint-scss/stylelint-scss/tree/master/src/rules/comment-no-empty
+        'comment-no-empty': null,
+        'scss/comment-no-empty': true,
+
+        // - Les `@import` doivent être situés avant n'importe quel autre règle hormis les `@use` de SASS.
+        // @see https://stylelint.io/user-guide/rules/list/no-invalid-position-at-import-rule
+        'no-invalid-position-at-import-rule': [true, {
+            ignoreAtRules: ['use'],
         }],
 
         // - S'assure que les boucles `each` avec utilisation de clé + valeur sont bien utilisés.
@@ -134,6 +147,17 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-colon-space-before
         'scss/dollar-variable-colon-space-before': 'never',
 
+        // - Il doit toujours y avoir une ligne vide avant les variables, sauf:
+        //   - Si la variable suit une autre variable.
+        //   - Si la variable suit un commentaire.
+        //   - Si la variable est le première élément dans un block.
+        //   - Si la variable se situe dans un block d'une seule ligne.
+        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-before
+        'scss/dollar-variable-empty-line-before': ['always', {
+            except: ['after-dollar-variable', 'first-nested'],
+            ignore: ['after-comment', 'inside-single-line-block'],
+        }],
+
         // - Les variables doivent être placées en première dans les blocks.
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-first-in-block
         'scss/dollar-variable-first-in-block': [true, {
@@ -156,7 +180,7 @@ module.exports = {
         // - Il doit toujours y avoir une ligne vide avant les commentaires double-slash, sauf:
         //   - Si le commentaire est le premier élément dans un block.
         //   - Si le commentaire suit un autre commentaire.
-        //   - Si le commentaire contient une command stylelint.
+        //   - Si le commentaire contient une commande stylelint.
         'scss/double-slash-comment-empty-line-before': ['always', {
             'except': ['first-nested'],
             'ignore': ['between-comments', 'stylelint-commands'],
@@ -165,6 +189,10 @@ module.exports = {
         // - Il doit toujours y avoir un espace juste après les double-slashs d'un commentaire ... double-slash.
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/double-slash-comment-whitespace-inside
         'scss/double-slash-comment-whitespace-inside': 'always',
+
+        // - S'assure que la fonction `quote` n'est pas utilisée avec une chaîne déjà quotée.
+        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-quote-no-quoted-strings-inside
+        'scss/function-quote-no-quoted-strings-inside': true,
 
         // - S'assure que la fonction `unquote` n'est pas utilisée avec une chaîne déjà sans quotes.
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-unquote-no-unquoted-strings-inside
@@ -199,9 +227,6 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-rule-conditional-no-parentheses
         'scss/at-rule-conditional-no-parentheses': null,
 
-        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/comment-no-empty
-        'scss/comment-no-empty': null,
-
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/comment-no-loud
         'scss/comment-no-loud': null,
 
@@ -215,17 +240,11 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-after
         'scss/dollar-variable-empty-line-after': null,
 
-        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-before
-        'scss/dollar-variable-empty-line-before': null,
-
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/double-slash-comment-inline
         'scss/double-slash-comment-inline': null,
 
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-color-relative
         'scss/function-color-relative': null,
-
-        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/function-quote-no-quoted-strings-inside
-        'scss/function-quote-no-quoted-strings-inside': null,
 
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/map-keys-quotes
         'scss/map-keys-quotes': null,
