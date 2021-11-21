@@ -1,3 +1,27 @@
+## 2.0.0 (2021-11-21)
+- [BREAKING] Règle modifiée : Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
+  (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
+- [BREAKING] Nouvelle règle : Interdit l'utilisation de fonctions globales sans import de module (e.g. `@use 'sass:color';`).  
+  Ceci est un breaking change car cela implique l'arrêt de la prise en charge de Node-SASS qui ne prend pas en charge les modules.
+- Met à jour les dépendances (et notamment Stylelint en version 14.x).
+- Règles modifiées :  
+  - Il est maintenant possible de dupliquer une propriété si la valeur contient un préfixe 
+    navigateur différent à chaque fois (e.g. `width: fit-content; width: -moz-fit-content;`).
+  - Les keyframess ne doivent pas contenir un mix de CamelCase et de lower kebab-case (e.g. `@keyframes mon-block-MalNommé {}`).
+  - Les `@use` sont maintenant autorisés à être placés avant les `@import`.
+- Nouvelles règles :
+  - Le linting s'assure maintenant que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
+  - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
+  - Le linting s'assure que la fonction `quote` n'est pas utilisée avec une chaîne déjà quotée.
+  - Interdit l'utilisation de fonctions globales sans import de module.
+  - Interdit les espaces irréguliers (e.g. `\u00A0`, etc.).
+  - Interdit les commentaires vides aussi en SCSS.
+  - Il doit dorénavant toujours y avoir une ligne vide avant les variables, sauf:
+    - Si la variable suit une autre variable.
+    - Si la variable suit un commentaire.
+    - Si la variable est le première élément dans un block.
+    - Si la variable se situe dans un block d'une seule ligne.
+
 ## 1.2.(1-2) (2021-08-14)
 - Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.
 

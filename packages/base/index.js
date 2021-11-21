@@ -28,11 +28,6 @@ module.exports = {
             ignoreAtRules: ['if', 'else', 'return', 'content', 'import', 'use', 'forward'],
         }],
 
-        // - Pas de préfixe navigateur pour les @-rule (e.g. `@-webkit-keyframes`)
-        //   (ils sont ajoutés automatiquement par l'autoprefixer)
-        // @see https://stylelint.io/user-guide/rules/at-rule-no-vendor-prefix
-        'at-rule-no-vendor-prefix': true,
-
         // - S'assure que certaines at-rules normalisées contiennent bien toutes les propriétés requises:
         //   - `@font-face`: Doit contenir au minimum les propriétés: `font-family`, `font-weight`, `font-style` et `src`.
         // @see https://stylelint.io/user-guide/rules/at-rule-property-required-list
@@ -52,11 +47,14 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
         'block-closing-brace-newline-after': 'always',
 
-        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la syntaxe legacy (pour le moment).
-        // TODO: Suivre l'évolution du proposal et changer pour `modern` dès que c'est en stage 3.
-        //       (https://preset-env.cssdb.org/features#color-functional-notation)
-        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
-        'color-function-notation': 'legacy',
+        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
+        //   (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
+        // @see https://stylelint.io/user-guide/rules/color-function-notation
+        'color-function-notation': 'modern',
+
+        // - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
+        // @see https://stylelint.io/user-guide/rules/list/color-hex-alpha
+        'color-hex-alpha': 'never',
 
         // - Il ne faut pas utiliser les noms de couleurs mais
         //   privilegier les codes hexadécimaux.
@@ -67,21 +65,24 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/color-no-invalid-hex
         'color-no-invalid-hex': true,
 
+        // - S'assure que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
+        // @see https://stylelint.io/user-guide/rules/list/custom-property-no-missing-var-function/
+        'custom-property-no-missing-var-function': true,
+
         // - Les propriétés customs doivent être en "hyphenated lowercase".
         //   Elles ne doivent pas commencer par un chiffre et finir par un tiret.
         //   (e.g. `--ma-var`)
         // @see https://stylelint.io/user-guide/rules/custom-property-pattern
-        // @see https://regex101.com/r/leWMWP/2
-        'custom-property-pattern': /^[a-z](?:[a-z0-9-]*[a-z0-9])?$/,
+        // @see https://regex101.com/r/3WVokQ/1
+        'custom-property-pattern': /^(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*$/,
 
         // - Interdit les propriétés en double à l'intérieur des blocks de déclaration.
+        //   Cette règle ignore les propriétés dupliquées avec des valeurs avec préfixes navigateur différents.
+        //   (e.g. `width: fit-content; width: -moz-fit-content;`)
         // @see https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties
-        'declaration-block-no-duplicate-properties': true,
-
-        // - Interdit l'utilisation des propriétés au format "long" lorsqu'elles peuvent être
-        //   "compactées" avec un format court.
-        // @see https://stylelint.io/user-guide/rules/declaration-block-no-redundant-longhand-properties
-        'declaration-block-no-redundant-longhand-properties': true,
+        'declaration-block-no-duplicate-properties': [true, {
+            ignore: ['consecutive-duplicates-with-same-prefixless-values'],
+        }],
 
         // - Interdit l'utilisation du mot clé `!important`,
         //   Le fait de devoir echapper son utilisation avec un commentaire
@@ -103,33 +104,20 @@ module.exports = {
             /* eslint-enable key-spacing */
         },
 
-        // - Les noms de font contenant des espaces doivent toujours être wrappées
-        //   dans des singles-quotes (e.g. "Times New Roman").
-        // @see https://stylelint.io/user-guide/rules/font-family-name-quotes
-        'font-family-name-quotes': 'always-where-recommended',
-
         // - Les `font-weight` doivent être déclarées numériquement (e.g. `font-weight: 800;`)
         // @see https://stylelint.io/user-guide/rules/font-weight-notation
         'font-weight-notation': 'numeric',
-
-        // - Les `urls` doivent toujours contenir des quotes.
-        // @see https://stylelint.io/user-guide/rules/function-url-quotes
-        'function-url-quotes': 'always',
-
-        // - Les valeurs de teinte dans les couleurs doivent explicitement utiliser l'unité `deg`.
-        // @see https://stylelint.io/user-guide/rules/hue-degree-notation
-        'hue-degree-notation': 'angle',
 
         // - Une indentation de 4 espaces doit être utilisée.
         // @see https://stylelint.io/user-guide/rules/indentation
         'indentation': 4,
 
         // - Les keyframess doivent être "hyphenated" et ne pas:
-        //   Elles ne doivent pas commencer par un chiffre et finir par un tiret.
-        //   (e.g. `@keyframes MonBlock-mon-animation {}`)
+        //   - Commencer par un chiffre et finir par un tiret (e.g. `@keyframes MonBlock-mon-animation {}`).
+        //   - Contenir un mix de CamelCase et de lower kebab-case (e.g. `@keyframes mon-block-MalNommé {}`).
         // @see https://stylelint.io/user-guide/rules/keyframes-name-pattern/
-        // @see https://regex101.com/r/hOtFsR/1
-        'keyframes-name-pattern': /^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,
+        // @see https://regex101.com/r/Tbk2wH/1
+        'keyframes-name-pattern': /^(?:(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*|(?:[A-Z][a-zA-Z0-9]*)(?:-{1,2}[a-zA-Z0-9]+)*)$/,
 
         // - S'assure que les saut de lignes sont bien des sauts de ligne unix.
         // @see https://stylelint.io/user-guide/rules/linebreaks
@@ -139,18 +127,9 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/max-nesting-depth
         'max-nesting-depth': 5,
 
-        // - Pas de préfixe navigateur pour les @-rule (e.g. `@media (-webkit-min-device-pixel-ratio: 1) {}`)
-        //   (ils sont ajoutés automatiquement par l'autoprefixer)
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-no-vendor-prefix
-        'media-feature-name-no-vendor-prefix': true,
-
         // - Empêche la duplication des selecteurs.
         // @see https://stylelint.io/user-guide/rules/no-duplicate-selectors
         'no-duplicate-selectors': true,
-
-        // - Interdit les lignes vides en début de fichier de style.
-        // @see https://stylelint.io/user-guide/rules/no-empty-first-line
-        'no-empty-first-line': true,
 
         // - Les lignes ne doivent pas faire plus de 120 caractères de long.
         //   (sauf pour les commentaires)
@@ -250,15 +229,6 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/property-no-unknown
         'property-no-unknown': true,
 
-        // - Pas de préfixe navigateur pour les propriétés (e.g. `-webkit-transform: scale(1);`)
-        //   (ils sont ajoutés automatiquement par l'autoprefixer)
-        // @see https://stylelint.io/user-guide/rules/property-no-vendor-prefix
-        'property-no-vendor-prefix': true,
-
-        // - Les selecteurs d'attributs doivent toujours contenir des quotes.
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-quotes
-        'selector-attribute-quotes': 'always',
-
         // - Vérifie la syntaxe des selecteurs qui doit correspondre à nos conventions BEM.
         //
         //   ```scss
@@ -299,8 +269,8 @@ module.exports = {
         //   Ils ne doivent pas commencer par un chiffre et finir par un tiret.
         //   (e.g. `#mon-selecteur`)
         // @see https://stylelint.io/user-guide/rules/selector-id-pattern
-        // @see https://regex101.com/r/leWMWP/2
-        'selector-id-pattern': /^[a-z](?:[a-z0-9-]*[a-z0-9])?$/,
+        // @see https://regex101.com/r/3WVokQ/1
+        'selector-id-pattern': /^(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*$/,
 
         // - Lorsque plusieurs selecteurs sont sur la même ligne (ce qui ne devrait pas arriver),
         //   il devrait y avoir un espace après la virgule entre chaque selecteur.
@@ -351,27 +321,6 @@ module.exports = {
             ignore: ['attribute'],
         }],
 
-        // - Pas de préfixe navigateur pour les selecteurs (e.g. `input::-moz-placeholder`)
-        //   (ils sont ajoutés automatiquement par l'autoprefixer)
-        // @see https://stylelint.io/user-guide/rules/selector-no-vendor-prefix
-        'selector-no-vendor-prefix': true,
-
-        // - Interdit l'utilisation de valeurs redondantes dans les propriétés combinées.
-        //
-        // @example
-        // ```scss
-        // .foo { margin: 1px; }
-        // .bar { padding: 0 auto 10px: }
-        //
-        // // ET NON:
-        //
-        // .foo { margin: 1px 1px 1px 1px; }
-        // .bar { padding: 0 auto 10px auto; }
-        // ```
-        //
-        // @see https://stylelint.io/user-guide/rules/shorthand-property-no-redundant-values
-        'shorthand-property-no-redundant-values': true,
-
         // - Des quotes simples doivent être utilisées.
         // @see https://stylelint.io/user-guide/rules/string-quotes
         'string-quotes': 'single',
@@ -393,11 +342,6 @@ module.exports = {
             // - Ignore les variables (faux positifs avec les noms de police dans les variables)
             ignoreProperties: [/^\$/],
         }],
-
-        // - Pas de préfixe navigateur pour les valeurs (e.g. `display: -webkit-flex;`)
-        //   (ils sont ajoutés automatiquement par l'autoprefixer)
-        // @see https://stylelint.io/user-guide/rules/value-no-vendor-prefix
-        'value-no-vendor-prefix': true,
 
         // - S'assure de l'absence de BOM.
         // @see https://stylelint.io/user-guide/rules/unicode-bom
@@ -444,9 +388,6 @@ module.exports = {
 
         // @see https://stylelint.io/user-guide/rules/comment-word-disallowed-list
         'comment-word-disallowed-list': null,
-
-        // @see https://stylelint.io/user-guide/rules/custom-media-pattern
-        'custom-media-pattern': null,
 
         // @see https://stylelint.io/user-guide/rules/declaration-block-semicolon-newline-before
         'declaration-block-semicolon-newline-before': null,
@@ -507,6 +448,9 @@ module.exports = {
 
         // @see https://stylelint.io/user-guide/rules/property-allowed-list
         'property-allowed-list': null,
+
+        // @see https://stylelint.io/user-guide/rules/list/rule-selector-property-disallowed-list
+        'rule-selector-property-disallowed-list': null,
 
         // @see https://stylelint.io/user-guide/rules/selector-attribute-name-disallowed-list
         'selector-attribute-name-disallowed-list': null,
