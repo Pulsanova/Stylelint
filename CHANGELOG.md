@@ -1,4 +1,6 @@
 ## 2.0.0 (UNRELEASED)
+- [BREAKING] Règle modifiée : Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
+  (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
 - [BREAKING] Nouvelle règle : Interdit l'utilisation de fonctions globales sans import de module (e.g. `@use 'sass:color';`).  
   Ceci est un breaking change car cela implique l'arrêt de la prise en charge de Node-SASS qui ne prend pas en charge les modules.
 - Met à jour les dépendances (et notamment Stylelint en version 14.x).
