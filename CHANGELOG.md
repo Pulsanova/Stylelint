@@ -1,5 +1,6 @@
 ## 2.0.1 (UNRELEASED)
 - Revert l'activation de certaines règles qui étaient désactivées volontairement.
+- Annule la modification de la règle concernant la nouvelle syntaxe des couleurs, le support n'est pas complet.
 
 ## 2.0.0 (2021-11-21)
 - [BREAKING] Règle modifiée : Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.

@@ -47,10 +47,13 @@ module.exports = {
         // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
         'block-closing-brace-newline-after': 'always',
 
-        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
-        //   (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
-        // @see https://stylelint.io/user-guide/rules/color-function-notation
-        'color-function-notation': 'modern',
+        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la syntaxe legacy (pour le moment).
+        // TODO: - Suivre l'évolution du proposal et changer pour `modern` dès que c'est en stage 3.
+        //         (https://preset-env.cssdb.org/features#color-functional-notation)
+        //       - Vérifier que la prise en charge des variables a été corrigée.
+        //         (= `rgb($ma-var, $alpha)` ne fonctionnait pas correctement)
+        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
+        'color-function-notation': 'legacy',
 
         // - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
         // @see https://stylelint.io/user-guide/rules/list/color-hex-alpha
