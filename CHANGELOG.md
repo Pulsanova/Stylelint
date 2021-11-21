@@ -1,4 +1,4 @@
-## 2.0.1 (UNRELEASED)
+## 2.0.1 (2021-11-21)
 - Revert l'activation de certaines règles qui étaient désactivées volontairement.
 - Annule la modification de la règle concernant la nouvelle syntaxe des couleurs, le support n'est pas complet.
 
