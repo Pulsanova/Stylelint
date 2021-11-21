@@ -1,4 +1,4 @@
-## 2.0.0 (UNRELEASED)
+## 2.0.0 (2021-11-21)
 - [BREAKING] Règle modifiée : Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
   (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
 - [BREAKING] Nouvelle règle : Interdit l'utilisation de fonctions globales sans import de module (e.g. `@use 'sass:color';`).  
