@@ -1,3 +1,7 @@
+## 2.0.1 (2021-11-21)
+- Revert l'activation de certaines règles qui étaient désactivées volontairement.
+- Annule la modification de la règle concernant la nouvelle syntaxe des couleurs, le support n'est pas complet.
+
 ## 2.0.0 (2021-11-21)
 - [BREAKING] Règle modifiée : Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la nouvelle syntaxe.
   (e.g. `rgba(12, 122, 231, 0.2)` -> `rgb(12 122 231 / 0.2)`)
@@ -15,12 +19,6 @@
   - Le linting s'assure que la fonction `quote` n'est pas utilisée avec une chaîne déjà quotée.
   - Interdit l'utilisation de fonctions globales sans import de module.
   - Interdit les espaces irréguliers (e.g. `\u00A0`, etc.).
-  - Interdit les commentaires vides aussi en SCSS.
-  - Il doit dorénavant toujours y avoir une ligne vide avant les variables, sauf:
-    - Si la variable suit une autre variable.
-    - Si la variable suit un commentaire.
-    - Si la variable est le première élément dans un block.
-    - Si la variable se situe dans un block d'une seule ligne.
 
 ## 1.2.(1-2) (2021-08-14)
 - Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.
