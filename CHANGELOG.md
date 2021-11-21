@@ -1,3 +1,14 @@
+## 1.3.0 (UNRELEASED)
+- Met à jour les dépendances (et notamment Stylelint en version 14.x).
+- Règles modifiées :  
+  - Il est maintenant possible de dupliquer une propriété si la valeur contient un préfixe 
+    navigateur différent à chaque fois (e.g. `width: fit-content; width: -moz-fit-content;`).
+  - Les keyframess ne doivent pas contenir un mix de CamelCase et de lower kebab-case (e.g. `@keyframes mon-block-MalNommé {}`).
+- Nouvelles règles :
+  - Le linting s'assure maintenant que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
+  - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
+  - Interdit les espaces irréguliers (e.g. `\u00A0`, etc.).
+
 ## 1.2.(1-2) (2021-08-14)
 - Corrige la liste des fonctions pour lesquelles les params. nommés sont autorisés.
 
