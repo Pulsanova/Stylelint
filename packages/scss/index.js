@@ -202,6 +202,10 @@ module.exports = {
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-duplicate-mixins
         'scss/no-duplicate-mixins': true,
 
+        // - Interdit l'utilisation de fonctions globales sans import de module.
+        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-global-function-names
+        'scss/no-global-function-names': true,
+
         // - Pas de retour à la ligne juste avant les opérateurs mathématiques.
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/operator-no-newline-before/README.md
         'scss/operator-no-newline-before': true,
@@ -257,10 +261,6 @@ module.exports = {
 
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-duplicate-dollar-variables
         'scss/no-duplicate-dollar-variables': null,
-
-        // TODO: Activate ?
-        // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-global-function-names
-        'scss/no-global-function-names': null,
 
         // @see https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/operator-no-newline-after
         'scss/operator-no-newline-after': null,

@@ -1,4 +1,6 @@
-## 1.3.0 (UNRELEASED)
+## 2.0.0 (UNRELEASED)
+- [BREAKING] Nouvelle règle : Interdit l'utilisation de fonctions globales sans import de module (e.g. `@use 'sass:color';`).  
+  Ceci est un breaking change car cela implique l'arrêt de la prise en charge de Node-SASS qui ne prend pas en charge les modules.
 - Met à jour les dépendances (et notamment Stylelint en version 14.x).
 - Règles modifiées :  
   - Il est maintenant possible de dupliquer une propriété si la valeur contient un préfixe 
@@ -9,6 +11,7 @@
   - Le linting s'assure maintenant que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
   - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
   - Le linting s'assure que la fonction `quote` n'est pas utilisée avec une chaîne déjà quotée.
+  - Interdit l'utilisation de fonctions globales sans import de module.
   - Interdit les espaces irréguliers (e.g. `\u00A0`, etc.).
   - Interdit les commentaires vides aussi en SCSS.
   - Il doit dorénavant toujours y avoir une ligne vide avant les variables, sauf:
