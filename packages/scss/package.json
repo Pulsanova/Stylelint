@@ -1,8 +1,10 @@
 {
     "name": "@pulsanova/stylelint-config-scss",
     "version": "2.0.1",
-    "main": "index.js",
     "license": "MIT",
+    "type": "module",
+    "main": "index.js",
+    "exports": "./index.js",
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:Pulsanova/Stylelint.git",
@@ -17,15 +19,15 @@
     },
     "dependencies": {
         "@pulsanova/stylelint-config-base": "2.0.1",
-        "postcss": "^8.3.11",
-        "postcss-scss": "^4.0.2",
-        "stylelint-scss": "~4.0.0"
+        "postcss": "^8",
+        "postcss-scss": "^4",
+        "stylelint-scss": "~6.12.1"
     },
     "devDependencies": {
-        "stylelint": "^14.1.0",
-        "stylelint-find-new-rules": "^3.0.4"
+        "stylelint": "^16.23.1",
+        "stylelint-find-new-rules": "^5.0.0"
     },
     "peerDependencies": {
-        "stylelint": "^14.1.0"
+        "stylelint": "^16.23.1"
     }
 }

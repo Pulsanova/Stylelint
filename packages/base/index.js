@@ -1,24 +1,215 @@
-'use strict';
+import propertiesOrderData from './data/properties-order.js';
 
-module.exports = {
+export default {
     extends: 'stylelint-config-standard',
     plugins: [
         'stylelint-declaration-block-no-ignored-properties',
+        '@stylistic/stylelint-plugin',
         'stylelint-order',
     ],
     rules: {
-        // - Les valeurs de transparence doivent utiliser le format numérique (pour le moment).
-        // TODO: Suivre l'évolution du support navigateur pour le format pourcentage et passer à ce format.
-        //       (https://caniuse.com/#feat=mdn-css_properties_opacity_percentages)
-        // @see https://stylelint.io/user-guide/rules/alpha-value-notation
-        'alpha-value-notation': 'number',
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/at-rule-name-case
+        '@stylistic/at-rule-name-case': 'lower',
 
-        // - S'assure qu'il y a bien une ligne vide avant les "at-rules" (e.g. `@include`, `@media`)
-        //   Autorise l'absence de ligne vide pour:
-        //   - Les at-rules sans corps qui se suivent
-        //   - Les at-rules qui sont premières dans leur block
-        //   - Les `@if`, `@else`, `@return` et `@content`
-        // @see https://stylelint.io/user-guide/rules/at-rule-empty-line-before
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/at-rule-name-space-after
+        '@stylistic/at-rule-name-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/at-rule-semicolon-newline-after
+        '@stylistic/at-rule-semicolon-newline-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/at-rule-semicolon-space-before
+        '@stylistic/at-rule-semicolon-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-closing-brace-empty-line-before
+        '@stylistic/block-closing-brace-empty-line-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-closing-brace-newline-after
+        '@stylistic/block-closing-brace-newline-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-closing-brace-newline-before
+        '@stylistic/block-closing-brace-newline-before': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-closing-brace-space-before
+        '@stylistic/block-closing-brace-space-before': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-opening-brace-newline-after
+        '@stylistic/block-opening-brace-newline-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-opening-brace-space-after
+        '@stylistic/block-opening-brace-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-opening-brace-space-before
+        '@stylistic/block-opening-brace-space-before': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/color-hex-case
+        '@stylistic/color-hex-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-bang-space-after
+        '@stylistic/declaration-bang-space-after': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-bang-space-before
+        '@stylistic/declaration-bang-space-before': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-block-semicolon-newline-after
+        '@stylistic/declaration-block-semicolon-newline-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-block-semicolon-space-after
+        '@stylistic/declaration-block-semicolon-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-block-semicolon-space-before
+        '@stylistic/declaration-block-semicolon-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-block-trailing-semicolon
+        '@stylistic/declaration-block-trailing-semicolon': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-colon-space-after
+        '@stylistic/declaration-colon-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-colon-space-before
+        '@stylistic/declaration-colon-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-comma-newline-after
+        '@stylistic/function-comma-newline-after': 'always-multi-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-comma-space-after
+        '@stylistic/function-comma-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-comma-space-before
+        '@stylistic/function-comma-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-max-empty-lines
+        '@stylistic/function-max-empty-lines': 0,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-parentheses-newline-inside
+        '@stylistic/function-parentheses-newline-inside': 'always-multi-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-parentheses-space-inside
+        '@stylistic/function-parentheses-space-inside': 'never-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-whitespace-after
+        '@stylistic/function-whitespace-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/indentation
+        '@stylistic/indentation': 4,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/linebreaks
+        '@stylistic/linebreaks': 'unix',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/max-empty-lines
+        '@stylistic/max-empty-lines': 1,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/max-line-length
+        '@stylistic/max-line-length': [120, { ignore: ['comments'] }],
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-colon-space-after
+        '@stylistic/media-feature-colon-space-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-colon-space-before
+        '@stylistic/media-feature-colon-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-name-case
+        '@stylistic/media-feature-name-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-parentheses-space-inside
+        '@stylistic/media-feature-parentheses-space-inside': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-range-operator-space-after
+        '@stylistic/media-feature-range-operator-space-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-feature-range-operator-space-before
+        '@stylistic/media-feature-range-operator-space-before': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-query-list-comma-newline-after
+        '@stylistic/media-query-list-comma-newline-after': 'always-multi-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-query-list-comma-space-after
+        '@stylistic/media-query-list-comma-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-query-list-comma-space-before
+        '@stylistic/media-query-list-comma-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-empty-first-line
+        '@stylistic/no-empty-first-line': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-eol-whitespace
+        '@stylistic/no-eol-whitespace': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-extra-semicolons
+        '@stylistic/no-extra-semicolons': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-missing-end-of-source-newline
+        '@stylistic/no-missing-end-of-source-newline': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/number-leading-zero
+        '@stylistic/number-leading-zero': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/number-no-trailing-zeros
+        '@stylistic/number-no-trailing-zeros': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/property-case
+        '@stylistic/property-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-attribute-brackets-space-inside
+        '@stylistic/selector-attribute-brackets-space-inside': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-attribute-operator-space-after
+        '@stylistic/selector-attribute-operator-space-after': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-attribute-operator-space-before
+        '@stylistic/selector-attribute-operator-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-combinator-space-after
+        '@stylistic/selector-combinator-space-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-combinator-space-before
+        '@stylistic/selector-combinator-space-before': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-descendant-combinator-no-non-space
+        '@stylistic/selector-descendant-combinator-no-non-space': true,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-list-comma-newline-after
+        '@stylistic/selector-list-comma-newline-after': 'always',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-list-comma-space-after
+        '@stylistic/selector-list-comma-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-list-comma-space-before
+        '@stylistic/selector-list-comma-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-max-empty-lines
+        '@stylistic/selector-max-empty-lines': 0,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-pseudo-class-case
+        '@stylistic/selector-pseudo-class-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-pseudo-class-parentheses-space-inside
+        '@stylistic/selector-pseudo-class-parentheses-space-inside': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-pseudo-element-case
+        '@stylistic/selector-pseudo-element-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/string-quotes
+        '@stylistic/string-quotes': 'single',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/unicode-bom
+        '@stylistic/unicode-bom': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/unit-case
+        '@stylistic/unit-case': 'lower',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-comma-newline-after
+        '@stylistic/value-list-comma-newline-after': 'always-multi-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-comma-space-after
+        '@stylistic/value-list-comma-space-after': 'always-single-line',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-comma-space-before
+        '@stylistic/value-list-comma-space-before': 'never',
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-max-empty-lines
+        '@stylistic/value-list-max-empty-lines': 0,
+
+        // https://stylelint.io/user-guide/rules/at-rule-empty-line-before/
         'at-rule-empty-line-before': ['always', {
             except: [
                 'blockless-after-same-name-blockless',
@@ -28,154 +219,104 @@ module.exports = {
             ignoreAtRules: ['if', 'else', 'return', 'content', 'import', 'use', 'forward'],
         }],
 
-        // - S'assure que certaines at-rules normalisées contiennent bien toutes les propriétés requises:
-        //   - `@font-face`: Doit contenir au minimum les propriétés: `font-family`, `font-weight`, `font-style` et `src`.
-        // @see https://stylelint.io/user-guide/rules/at-rule-property-required-list
+        // https://stylelint.io/user-guide/rules/at-rule-property-requirelist/
         'at-rule-property-required-list': {
             'font-face': ['font-family', 'font-weight', 'font-style', 'src'],
         },
 
-        // - Jamais d'espace devant le point virgule des @-rules.
-        // @see https://stylelint.io/user-guide/rules/at-rule-semicolon-space-before
-        'at-rule-semicolon-space-before': 'never',
-
-        // - Interdit les blocks vides. (e.g. `.ma-classe {}`)
-        // @see https://stylelint.io/user-guide/rules/block-no-empty
+        // https://stylelint.io/user-guide/rules/block-no-empty/
         'block-no-empty': true,
 
-        // - Retour à la ligne après chaque accolade de fermeture.
-        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
-        'block-closing-brace-newline-after': 'always',
+        // https://stylelint.io/user-guide/rules/color-function-notation/
+        'color-function-notation': ['modern', {
+            ignore: ['with-var-inside'],
+        }],
 
-        // - Les fonctions liées aux couleurs (`rgb`, `hsl`) doivent utiliser la syntaxe legacy (pour le moment).
-        // TODO: - Suivre l'évolution du proposal et changer pour `modern` dès que c'est en stage 3.
-        //         (https://preset-env.cssdb.org/features#color-functional-notation)
-        //       - Vérifier que la prise en charge des variables a été corrigée.
-        //         (= `rgb($ma-var, $alpha)` ne fonctionnait pas correctement)
-        // @see https://stylelint.io/user-guide/rules/block-closing-brace-newline-after
-        'color-function-notation': 'legacy',
-
-        // - Interdit l'utilisation de la composante "alpha" des codes hexadecimaux au profit de `rgba()`.
-        // @see https://stylelint.io/user-guide/rules/list/color-hex-alpha
+        // https://stylelint.io/user-guide/rules/list/color-hex-alpha/
         'color-hex-alpha': 'never',
 
-        // - Il ne faut pas utiliser les noms de couleurs mais
-        //   privilegier les codes hexadécimaux.
-        // @see https://stylelint.io/user-guide/rules/color-named
+        // https://stylelint.io/user-guide/rules/color-named/
         'color-named': 'never',
 
-        // - Interdit l'utilisation de code hexadécimaux invalides pour les couleurs.
-        // @see https://stylelint.io/user-guide/rules/color-no-invalid-hex
+        // https://stylelint.io/user-guide/rules/color-no-invalid-hex/
         'color-no-invalid-hex': true,
 
-        // - S'assure que `var()` est bien utilisé quand on tente d'utiliser une custom-property.
-        // @see https://stylelint.io/user-guide/rules/list/custom-property-no-missing-var-function/
+        // https://stylelint.io/user-guide/rules/container-name-pattern/
+        // @see https://regex101.com/r/04loin/1
+        'container-name-pattern': [/^(?:[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*|[A-Z][a-zA-Z0-9]+(?:-{1,2}[a-zA-Z0-9]+)*)$/, {
+            message: (
+                'Use either kebab-case or PascalCase names (optionally scoped) for the container names ' +
+                '(e.g. `@container foo {}`, `@container FooBar {}`, `@container MyScope--foo {}`, ...)'
+            ),
+        }],
+
+        // https://stylelint.io/user-guide/rules/list/custom-property-no-missing-var-function/
         'custom-property-no-missing-var-function': true,
 
-        // - Les propriétés customs doivent être en "hyphenated lowercase".
-        //   Elles ne doivent pas commencer par un chiffre et finir par un tiret.
-        //   (e.g. `--ma-var`)
-        // @see https://stylelint.io/user-guide/rules/custom-property-pattern
-        // @see https://regex101.com/r/3WVokQ/1
-        'custom-property-pattern': /^(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*$/,
+        // https://stylelint.io/user-guide/rules/custom-property-pattern/
+        // @see https://regex101.com/r/geT0Zw/1
+        'custom-property-pattern': [/^(?:[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*|[A-Z][a-zA-Z0-9]+-(?:-[a-z0-9]+)+)$/, {
+            message: (
+                'Use kebab-case or PascalCase names (optionally scoped) for the custom properties ' +
+                '(e.g. `--foo: #fff;`, `--foo-bar: #fff;` or `--scope--foo: #fff;` / `--MyScope--foo: #fff;`)'
+            ),
+        }],
 
-        // - Interdit les propriétés en double à l'intérieur des blocks de déclaration.
-        //   Cette règle ignore les propriétés dupliquées avec des valeurs avec préfixes navigateur différents.
-        //   (e.g. `width: fit-content; width: -moz-fit-content;`)
-        // @see https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties
+        // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties/
         'declaration-block-no-duplicate-properties': [true, {
             ignore: ['consecutive-duplicates-with-same-prefixless-values'],
         }],
 
-        // - Interdit l'utilisation du mot clé `!important`,
-        //   Le fait de devoir echapper son utilisation avec un commentaire
-        //   de désactivation de règle permet de s'assurer qu'il ne sera
-        //   utilisé qu'en cas de réel besoin.
-        // @see https://stylelint.io/user-guide/rules/declaration-no-important
+        // https://stylelint.io/user-guide/rules/declaration-block-no-redundant-longhand-properties/
+        'declaration-block-no-redundant-longhand-properties': [true, {
+            ignoreShorthands: ['border-image'],
+        }],
+
+        // https://stylelint.io/user-guide/rules/declaration-block-single-line-max-declarations/
+        'declaration-block-single-line-max-declarations': 0,
+
+        // https://stylelint.io/user-guide/rules/declaration-no-important/
         'declaration-no-important': true,
 
-        // - Restreint les unités utilisables (pour l'homogénéisation de la codebase).
-        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-allowed-list
-        'declaration-property-unit-allowed-list': {
-            /* eslint-disable key-spacing */
-            'line-height'             : ['px', 'pt', 'mm', 'em', 'rem'],
-            'font-size'               : ['px', 'pt', 'em', 'rem'],
-            '/^((min|max)-)?height$/' : ['px', 'pt', 'mm', 'em', 'vh', '%', 'rem'],
-            '/^((min|max)-)?width$/'  : ['px', 'pt', 'mm', 'em', 'vw', '%', 'rem'],
-            'vertical-align'          : ['px', 'pt', 'em', 'rem'],
-            '/.*/'                    : ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
-            /* eslint-enable key-spacing */
-        },
+        // https://stylelint.io/user-guide/rules/declaration-property-value-keyword-no-deprecated/
+        'declaration-property-value-keyword-no-deprecated': [true, {
+            ignoreKeywords: ['break-word'],
+        }],
 
-        // - Les `font-weight` doivent être déclarées numériquement (e.g. `font-weight: 800;`)
-        // @see https://stylelint.io/user-guide/rules/font-weight-notation
+        // https://stylelint.io/user-guide/rules/font-weight-notation/
         'font-weight-notation': 'numeric',
 
-        // - Une indentation de 4 espaces doit être utilisée.
-        // @see https://stylelint.io/user-guide/rules/indentation
-        'indentation': 4,
+        // https://stylelint.io/user-guide/rules/function-disallowed-list/
+        'function-disallowed-list': ['rgba', 'hsla'],
 
-        // - Les keyframess doivent être "hyphenated" et ne pas:
-        //   - Commencer par un chiffre et finir par un tiret (e.g. `@keyframes MonBlock-mon-animation {}`).
-        //   - Contenir un mix de CamelCase et de lower kebab-case (e.g. `@keyframes mon-block-MalNommé {}`).
-        // @see https://stylelint.io/user-guide/rules/keyframes-name-pattern/
-        // @see https://regex101.com/r/Tbk2wH/1
-        'keyframes-name-pattern': /^(?:(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*|(?:[A-Z][a-zA-Z0-9]*)(?:-{1,2}[a-zA-Z0-9]+)*)$/,
+        // https://stylelint.io/user-guide/rules/function-linear-gradient-no-nonstandard-direction/
+        'function-linear-gradient-no-nonstandard-direction': true,
 
-        // - S'assure que les saut de lignes sont bien des sauts de ligne unix.
-        // @see https://stylelint.io/user-guide/rules/linebreaks
-        'linebreaks': 'unix',
+        // https://stylelint.io/user-guide/rules/function-no-unknown/
+        'function-no-unknown': true,
 
-        // - Limite la profondeur d'imbrication des règles à 5.
-        // @see https://stylelint.io/user-guide/rules/max-nesting-depth
-        'max-nesting-depth': 5,
+        // https://stylelint.io/user-guide/rules/keyframes-name-pattern/
+        // @see https://regex101.com/r/04loin/1
+        'keyframes-name-pattern': [/^(?:[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*|[A-Z][a-zA-Z0-9]+(?:-{1,2}[a-zA-Z0-9]+)*)$/, {
+            message: (
+                'Use either kebab-case or PascalCase names (optionally scoped) for the keyframes ' +
+                '(e.g. `@keyframes foo {}`, `@keyframes FooBar {}`, `@keyframes MyScope--foo {}`, ...)'
+            ),
+        }],
 
-        // - Empêche la duplication des selecteurs.
-        // @see https://stylelint.io/user-guide/rules/no-duplicate-selectors
+        // https://stylelint.io/user-guide/rules/layer-name-pattern/
+        // @see https://regex101.com/r/04loin/1
+        'layer-name-pattern': [/^(?:[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*|[A-Z][a-zA-Z0-9]+(?:-{1,2}[a-zA-Z0-9]+)*)$/, {
+            message: (
+                'Use either kebab-case or PascalCase names (optionally scoped) for the layer names ' +
+                '(e.g. `@layer foo {}`, `@layer FooBar {}`, `@layer MyScope--foo {}`, ...)'
+            ),
+        }],
+
+        // https://stylelint.io/user-guide/rules/no-duplicate-selectors/
         'no-duplicate-selectors': true,
 
-        // - Les lignes ne doivent pas faire plus de 120 caractères de long.
-        //   (sauf pour les commentaires)
-        // @see https://stylelint.io/user-guide/rules/max-line-length
-        'max-line-length': [120, { ignore: ['comments'] }],
-
-        // - Toujours ajouter le "0." devant les nombres.
-        // @see https://stylelint.io/user-guide/rules/number-leading-zero
-        'number-leading-zero': 'always',
-
-        // - Précision max des nombres à 4 chiffres après la virgule.
-        // @see https://stylelint.io/user-guide/rules/number-max-precision
-        'number-max-precision': 4,
-
-        // - S'assure du bon ordre des éléments dans les blocks de déclaration CSS.
-        //
-        //   ```scss
-        //   .test {
-        //       $ma-var: #fff;
-        //
-        //       @extend %error;
-        //       @include icon(plus);
-        //
-        //       display : block:
-        //       color   : $ma-var;
-        //
-        //       @include machin() {
-        //           color: red;
-        //       }
-        //
-        //       &__sub {
-        //           text-align: left;
-        //       }
-        //
-        //       @media print {
-        //           .btn {
-        //               color: red;
-        //           }
-        //       }
-        //   }
-        //   ```
-        //
-        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
         'order/order': [
             // - Variables
             'dollar-variables',
@@ -216,143 +357,100 @@ module.exports = {
             { type: 'at-rule', name: 'content' },
         ],
 
-        // - S'assure du bon ordre des propriétés.
-        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
-        'order/properties-order': [
-            require('./data/properties-order'),
-            { unspecified: 'bottom' },
-        ],
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
+        'order/properties-order': [propertiesOrderData, { unspecified: 'bottom' }],
 
-        // - Empêche l'utilisation de propriétés incompatibles entres-elles.
-        //   (e.g. `display: inline; margin-top: 10px;`)
-        // @see https://github.com/kristerkari/stylelint-declaration-block-no-ignored-properties
+        // https://github.com/kristerkari/stylelint-declaration-block-no-ignored-properties
         'plugin/declaration-block-no-ignored-properties': true,
 
-        // - Interdit les propriétés inconnues.
-        // @see https://stylelint.io/user-guide/rules/property-no-unknown
-        'property-no-unknown': true,
+        // https://stylelint.io/user-guide/rules/property-no-unknown/
+        'property-no-unknown': [true, {
+            checkPrefixed: true,
+            ignoreProperties: [],
+            ignoreSelectors: [],
+            ignoreAtRules: [],
+        }],
 
-        // - Vérifie la syntaxe des selecteurs qui doit correspondre à nos conventions BEM.
-        //
-        //   ```scss
-        //   // - Selecteurs valides:
-        //   .Block--modifier {}
-        //   .block-name__element--modifier {}
-        //   .BlockName__element--modifier {}
-        //   .block__element-name--modifier-name {}
-        //   .My-block {}
-        //   .my-block {}
-        //   .MyBlock__subblock__element {}
-        //   .MyBlock__subblock__element--modifier {}
-        //
-        //   // - Selecteurs invalides
-        //   .block-Name {}
-        //   .Block_name {}
-        //   .BlockName_element-modifier {}
-        //   .0name__element {}
-        //   .B__element {}
-        //   .b__element {}
-        //   .Block__ele_ment {}
-        //   ```
-        //
-        // @see https://stylelint.io/user-guide/rules/selector-class-pattern
+        // https://stylelint.io/user-guide/rules/property-no-vendor-prefix/
+        'property-no-vendor-prefix': [true, {
+            ignoreProperties: ['box-orient', 'appearance'],
+        }],
+
+        // https://stylelint.io/user-guide/rules/rule-empty-line-before/
+        'rule-empty-line-before': ['always-multi-line', {
+            except: ['first-nested'],
+            ignore: ['after-comment'],
+        }],
+
+        // https://stylelint.io/user-guide/rules/selector-class-pattern/
         'selector-class-pattern': [
             (() => {
-                // @see https://regex101.com/r/ufksHO/2
-                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]+(?:-[a-z0-9]+)*)';
+                // @see https://regex101.com/r/qGcwwl/1
+                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)';
 
                 // @see https://regex101.com/r/8g3k8D/3
                 const WORD = '[a-z0-9]+(?:-[a-z0-9]+)*';
                 return `^${BLOCK}(?:__${WORD})*(?:--${WORD})?$`;
             })(),
-            { resolveNestedSelectors: true, message: `Invalid BEM selector.` },
+            {
+                resolveNestedSelectors: true,
+                message: (
+                    'Use either kebab-case or PascalCase BEM names for the selectors ' +
+                    '(e.g. `.Foo {}`, `.Foo__bar {}`, `.foo__bar {}`, `.Foo__bar--active {}`, ...)'
+                ),
+            },
         ],
 
-        // - Les selecteurs d'ids doivent être en "hyphenated lowercase".
-        //   Ils ne doivent pas commencer par un chiffre et finir par un tiret.
-        //   (e.g. `#mon-selecteur`)
-        // @see https://stylelint.io/user-guide/rules/selector-id-pattern
-        // @see https://regex101.com/r/3WVokQ/1
-        'selector-id-pattern': /^(?:[a-z][a-z0-9]*)(?:-{1,2}[a-z0-9]+)*$/,
+        // https://stylelint.io/user-guide/rules/selector-id-pattern/
+        // @see https://regex101.com/r/kpYO1q/1
+        'selector-id-pattern': [/^[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*$/, {
+            message: (
+                'Use kebab-case (optionally scoped) names for the ids ' +
+                '(e.g. `#foo {}`, `#foo-bar {}` or `#scope--foo {}`)'
+            ),
+        }],
 
-        // - Lorsque plusieurs selecteurs sont sur la même ligne (ce qui ne devrait pas arriver),
-        //   il devrait y avoir un espace après la virgule entre chaque selecteur.
-        // @see https://stylelint.io/user-guide/rules/selector-list-comma-space-after
-        'selector-list-comma-space-after': 'always-single-line',
-
-        // @see https://stylelint.io/user-guide/rules/selector-max-compound-selectors
+        // https://stylelint.io/user-guide/rules/selector-max-compound-selectors/
         'selector-max-compound-selectors': 3,
 
-        // - Limite à 1 le nombre d'attribut dans un selecteur.
-        // @see https://stylelint.io/user-guide/rules/selector-max-attribute
-        'selector-max-attribute': 1,
-
-        // - Limite à 5 le nombre de classe dans un selecteur. (e.g. `.foo.bar .baz > .buz`)
-        // @see https://stylelint.io/user-guide/rules/selector-max-class
-        'selector-max-class': 5,
-
-        // - Limite à 4 le nombre de "combinateurs" dans un selecteur. (e.g. `.foo .bar > .baz`)
-        // @see https://stylelint.io/user-guide/rules/selector-max-combinators
-        'selector-max-combinators': 4,
-
-        // - Limite à 1 le nombre d'ids dans un selecteur (e.g. `#foo #bar`)
-        //   (Notons que s'il y en a pas du tout c'est encore mieux)
-        // @see https://stylelint.io/user-guide/rules/selector-max-id
+        // https://stylelint.io/user-guide/rules/selector-max-id/
         'selector-max-id': 0,
 
-        // - Limite à 3 le nombre de pseudo-classes dans une sélécteur. (e.g. `.foo:hover:active:focus`)
-        // @see https://stylelint.io/user-guide/rules/selector-max-pseudo-class
-        'selector-max-pseudo-class': 3,
-
-        // - Empêche l'utilisation des selecteurs de type (e.g. `a {}`, 'html {}')
-        // @see https://stylelint.io/user-guide/rules/selector-max-type
+        // https://stylelint.io/user-guide/rules/selector-max-type/
         'selector-max-type': [0, {
             ignore: ['compounded'],
             message: `Type selectors are not allowed.`,
         }],
 
-        // - Empêche l'utilisation du selecteur universel. (e.g. `.btn *`)
-        // @see https://stylelint.io/user-guide/rules/selector-max-universal
+        // https://stylelint.io/user-guide/rules/selector-max-universal/
         'selector-max-universal': [0, {
             message: `Universal selectors are not allowed.`,
         }],
 
-        // - Empêche l'utilisation d'un prefixe de type devant les selecteurs. (e.g. `a.link`)
-        //   La règle est toutefois désactivé pour les attributs (`input[type=text]`)
-        // @see https://stylelint.io/user-guide/rules/selector-no-qualifying-type
+        // https://stylelint.io/user-guide/rules/selector-no-qualifying-type/
         'selector-no-qualifying-type': [true, {
             ignore: ['attribute'],
         }],
 
-        // - Des quotes simples doivent être utilisées.
-        // @see https://stylelint.io/user-guide/rules/string-quotes
-        'string-quotes': 'single',
-
-        // - Le temps minimum appliqué dans les animations, transitions, etc. doit être de 100ms.
-        //   (sauf pour les delais (e.g. `transition-delay`))
-        // @see https://stylelint.io/user-guide/rules/time-min-milliseconds
+        // https://stylelint.io/user-guide/rules/time-min-milliseconds/
         'time-min-milliseconds': [100, {
             ignore: ['delay'],
         }],
 
-        // - Limite les unités autorisées pour l'homogénéité du code.
-        // @see https://stylelint.io/user-guide/rules/unit-allowed-list
-        'unit-allowed-list': ['px', 'pt', 'mm', 'em', 'rem', '%', 'deg', 'vh', 'vw', 'ms'],
+        // https://stylelint.io/user-guide/rules/unit-allowed-list/
+        'unit-allowed-list': ['em', 'rem', 'px', 'pt', 'mm', 'vh', 'vw', 'ms', '%', 'deg', 'fr'],
 
-        // - Les mots-clés valeurs doivent être en minuscules.
-        // @see https://stylelint.io/user-guide/rules/value-keyword-case
+        // https://stylelint.io/user-guide/rules/unit-no-unknown/
+        'unit-no-unknown': true,
+
+        // https://stylelint.io/user-guide/rules/value-keyword-case/
         'value-keyword-case': ['lower', {
             // - Ignore les variables (faux positifs avec les noms de police dans les variables)
             ignoreProperties: [/^\$/],
+            camelCaseSvgKeywords: true,
         }],
 
-        // - S'assure de l'absence de BOM.
-        // @see https://stylelint.io/user-guide/rules/unicode-bom
-        'unicode-bom': 'never',
-
-        // - Interdit l'utilisation de certaines unités.
-        //   (cf. https://developer.mozilla.org/fr/docs/Web/CSS/Types_CSS pour les unités)
-        // @see https://stylelint.io/user-guide/rules/unit-disallowed-list
+        // https://stylelint.io/user-guide/rules/unit-disallowed-list/
         'unit-disallowed-list': [
             'rad', 'vmin', 'vmax', 'cm', 'ex',
             'pc', 'in', 'ch', 'ic', 'rlh',
@@ -361,141 +459,180 @@ module.exports = {
         ],
 
         //
-        // - Disabled rules
+        // - Règles désactivées
         //
 
-        // @see https://stylelint.io/user-guide/rules/at-rule-disallowed-list
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/at-rule-name-newline-after
+        '@stylistic/at-rule-name-newline-after': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-closing-brace-space-after
+        '@stylistic/block-closing-brace-space-after': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/block-opening-brace-newline-before
+        '@stylistic/block-opening-brace-newline-before': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-block-semicolon-newline-before
+        '@stylistic/declaration-block-semicolon-newline-before': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/declaration-colon-newline-after
+        '@stylistic/declaration-colon-newline-after': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/function-comma-newline-before
+        '@stylistic/function-comma-newline-before': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/media-query-list-comma-newline-before
+        '@stylistic/media-query-list-comma-newline-before': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/named-grid-areas-alignment
+        '@stylistic/named-grid-areas-alignment': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-list-comma-newline-before
+        '@stylistic/selector-list-comma-newline-before': null,
+
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-comma-newline-before
+        '@stylistic/value-list-comma-newline-before': null,
+
+        // https://stylelint.io/user-guide/rules/at-rule-disallowed-list/
         'at-rule-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/at-rule-name-newline-after
-        'at-rule-name-newline-after': null,
-
-        // @see https://stylelint.io/user-guide/rules/at-rule-allowed-list
+        // https://stylelint.io/user-guide/rules/at-rule-allowed-list/
         'at-rule-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/block-opening-brace-newline-before
-        'block-opening-brace-newline-before': null,
+        // https://stylelint.io/user-guide/rules/block-no-redundant-nested-style-rules
+        'block-no-redundant-nested-style-rules': null,
 
-        // @see https://stylelint.io/user-guide/rules/block-closing-brace-space-after
-        'block-closing-brace-space-after': null,
-
-        // @see https://stylelint.io/user-guide/rules/color-no-hex
+        // https://stylelint.io/user-guide/rules/color-no-hex/
         'color-no-hex': null,
 
-        // @see https://stylelint.io/user-guide/rules/comment-pattern
+        // https://stylelint.io/user-guide/rules/comment-pattern/
         'comment-pattern': null,
 
         // - Disabled because of rtlcss that uses /*rtl:ignore*/ comments ...
-        // @see https://stylelint.io/user-guide/rules/comment-whitespace-inside
+        // https://stylelint.io/user-guide/rules/comment-whitespace-inside/
         'comment-whitespace-inside': null,
 
-        // @see https://stylelint.io/user-guide/rules/comment-word-disallowed-list
+        // https://stylelint.io/user-guide/rules/comment-word-disallowed-list/
         'comment-word-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-block-semicolon-newline-before
-        'declaration-block-semicolon-newline-before': null,
-
-        // @see https://stylelint.io/user-guide/rules/declaration-empty-line-before
+        // https://stylelint.io/user-guide/rules/declaration-empty-line-before/
         'declaration-empty-line-before': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-value-disallowed-list/
+        // https://stylelint.io/user-guide/rules/declaration-property-value-disallowed-list/
         'declaration-property-value-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-value-allowed-list
-        'declaration-property-value-allowed-list': null,
+        // https://stylelint.io/user-guide/rules/list/declaration-property-max-values/
+        'declaration-property-max-values': null,
 
-        // @see https://stylelint.io/user-guide/rules/declaration-property-unit-disallowed-list/
+        // https://stylelint.io/user-guide/rules/declaration-property-unit-disallowed-list/
         'declaration-property-unit-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-disallowed-list
-        'function-disallowed-list': null,
+        // https://stylelint.io/user-guide/rules/declaration-property-unit-allowed-list/
+        'declaration-property-unit-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-comma-newline-before
-        'function-comma-newline-before': null,
+        // https://stylelint.io/user-guide/rules/declaration-property-value-allowed-list/
+        'declaration-property-value-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-url-no-scheme-relative
+        // https://stylelint.io/user-guide/rules/function-url-no-scheme-relative/
         'function-url-no-scheme-relative': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-url-scheme-disallowed-list
+        // https://stylelint.io/user-guide/rules/function-url-scheme-disallowed-list/
         'function-url-scheme-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-url-scheme-allowed-list
+        // https://stylelint.io/user-guide/rules/function-url-scheme-allowed-list/
         'function-url-scheme-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/function-allowed-list
+        // https://stylelint.io/user-guide/rules/function-allowed-list/
         'function-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-disallowed-list
+        // https://stylelint.io/user-guide/rules/max-nesting-depth/
+        'max-nesting-depth': null,
+
+        // https://stylelint.io/user-guide/rules/media-feature-name-disallowed-list/
         'media-feature-name-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-value-allowed-list
+        // https://stylelint.io/user-guide/rules/media-feature-name-value-allowed-list/
         'media-feature-name-value-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-feature-name-allowed-list
+        // https://stylelint.io/user-guide/rules/media-feature-name-allowed-list/
         'media-feature-name-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/media-query-list-comma-newline-before
-        'media-query-list-comma-newline-before': null,
+        // https://stylelint.io/user-guide/rules/media-feature-name-unit-allowed-list/
+        'media-feature-name-unit-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/no-descending-specificity
+        // https://stylelint.io/user-guide/rules/no-descending-specificity/
         'no-descending-specificity': null,
 
-        // @see https://stylelint.io/user-guide/rules/no-unknown-animations
+        // https://stylelint.io/user-guide/rules/no-unknown-animations/
         'no-unknown-animations': null,
 
-        // @see https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-alphabetical-order/README.md
+        // https://stylelint.io/user-guide/rules/no-unknown-custom-media/
+        'no-unknown-custom-media': null,
+
+        // https://stylelint.io/user-guide/rules/no-unknown-custom-properties/
+        'no-unknown-custom-properties': null,
+
+        // https://stylelint.io/user-guide/rules/number-max-precision/
+        'number-max-precision': null,
+
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-alphabetical-order/README.md
         'order/properties-alphabetical-order': null,
 
-        // @see https://stylelint.io/user-guide/rules/property-disallowed-list
+        // https://stylelint.io/user-guide/rules/property-disallowed-list/
         'property-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/property-allowed-list
+        // https://stylelint.io/user-guide/rules/property-allowed-list/
         'property-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/list/rule-selector-property-disallowed-list
+        // https://stylelint.io/user-guide/rules/list/rule-selector-property-disallowed-list/
         'rule-selector-property-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-name-disallowed-list
+        // https://stylelint.io/user-guide/rules/selector-attribute-name-disallowed-list/
         'selector-attribute-name-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-disallowed-list
+        // https://stylelint.io/user-guide/rules/selector-attribute-operator-disallowed-list/
         'selector-attribute-operator-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-attribute-operator-allowed-list
+        // https://stylelint.io/user-guide/rules/selector-attribute-operator-allowed-list/
         'selector-attribute-operator-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-combinator-disallowed-list
+        // https://stylelint.io/user-guide/rules/selector-combinator-disallowed-list/
         'selector-combinator-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-combinator-allowed-list
+        // https://stylelint.io/user-guide/rules/selector-combinator-allowed-list/
         'selector-combinator-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/list/selector-disallowed-list/
+        // https://stylelint.io/user-guide/rules/list/selector-disallowed-list/
         'selector-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-list-comma-newline-before
-        'selector-list-comma-newline-before': null,
+        // https://stylelint.io/user-guide/rules/selector-max-attribute/
+        'selector-max-attribute': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-max-specificity
+        // https://stylelint.io/user-guide/rules/selector-max-class/
+        'selector-max-class': null,
+
+        // https://stylelint.io/user-guide/rules/selector-max-combinators/
+        'selector-max-combinators': null,
+
+        // https://stylelint.io/user-guide/rules/selector-max-pseudo-class/
+        'selector-max-pseudo-class': null,
+
+        // https://stylelint.io/user-guide/rules/selector-max-specificity/
         'selector-max-specificity': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-nested-pattern
+        // https://stylelint.io/user-guide/rules/selector-nested-pattern/
         'selector-nested-pattern': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-disallowed-list
+        // https://stylelint.io/user-guide/rules/selector-pseudo-class-disallowed-list/
         'selector-pseudo-class-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-class-allowed-list
+        // https://stylelint.io/user-guide/rules/selector-pseudo-class-allowed-list/
         'selector-pseudo-class-allowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-disallowed-list
+        // https://stylelint.io/user-guide/rules/selector-pseudo-element-disallowed-list/
         'selector-pseudo-element-disallowed-list': null,
 
-        // @see https://stylelint.io/user-guide/rules/selector-pseudo-element-allowed-list
+        // https://stylelint.io/user-guide/rules/selector-pseudo-element-allowed-list/
         'selector-pseudo-element-allowed-list': null,
-
-        // @see https://stylelint.io/user-guide/rules/value-list-comma-newline-before
-        'value-list-comma-newline-before': null,
     },
     reportNeedlessDisables: true,
 };

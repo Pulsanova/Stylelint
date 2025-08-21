@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = [
+export default [
     'all',
     'content',
 
@@ -10,6 +8,7 @@ module.exports = [
 
     'position',
     'z-index',
+    'inset',
     'top',
     'left',
     'bottom',
@@ -40,6 +39,10 @@ module.exports = [
     'flex-direction',
     'flex-wrap',
 
+    'place-items',
+    'place-content',
+
+    'align-self',
     'align-items',
     'justify-content',
 
@@ -123,8 +126,11 @@ module.exports = [
     // - Text
     //
 
+    'font',
     'font-family',
     'font-size',
+    'font-smoothing',
+    'font-variant',
     'font-weight',
     'font-style',
     {

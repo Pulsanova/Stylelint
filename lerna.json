@@ -1,18 +1,10 @@
 {
-    "version": "2.0.1",
-    "npmClient": "yarn",
-    "packages": [
-        "packages/*"
-    ],
-    "tagVersionPrefix": "",
-    "command": {
-        "version": {
-            "exact": true
-        },
-        "bootstrap": {
-            "npmClientArgs": [
-                "--no-lockfile"
-            ]
-        }
+  "version": "2.0.1",
+  "tagVersionPrefix": "",
+  "command": {
+    "version": {
+      "exact": true
     }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }

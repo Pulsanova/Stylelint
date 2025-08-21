@@ -1,6 +1,0 @@
-{
-    "extends": "@pulsanova/base",
-    "rules": {
-        "global-require": ["off"]
-    }
-}
