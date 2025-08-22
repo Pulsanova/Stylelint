@@ -254,13 +254,22 @@ export default {
         'custom-property-no-missing-var-function': true,
 
         // https://stylelint.io/user-guide/rules/custom-property-pattern/
-        // @see https://regex101.com/r/geT0Zw/1
-        'custom-property-pattern': [/^(?:[a-z][a-z0-9]+(?:-{1,2}[a-z0-9]+)*|[A-Z][a-zA-Z0-9]+-(?:-[a-z0-9]+)+)$/, {
-            message: (
-                'Use kebab-case or PascalCase names (optionally scoped) for the custom properties ' +
-                '(e.g. `--foo: #fff;`, `--foo-bar: #fff;` or `--scope--foo: #fff;` / `--MyScope--foo: #fff;`)'
-            ),
-        }],
+        'custom-property-pattern': [
+            (() => {
+                // @see https://regex101.com/r/qGcwwl/1
+                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)';
+
+                // @see https://regex101.com/r/8g3k8D/3
+                const WORD = '[a-z0-9]+(?:-[a-z0-9]+)*';
+                return `^${BLOCK}(?:__${WORD})*(?:--${WORD})?$`;
+            })(),
+            {
+                message: (
+                    'Use kebab-case or PascalCase names (optionally scoped) for the custom properties ' +
+                    '(e.g. `--foo: #fff;`, `--foo-bar: #fff;` or `--scope--foo: #fff;` / `--MyScope--foo: #fff;`)'
+                ),
+            },
+        ],
 
         // https://stylelint.io/user-guide/rules/declaration-block-no-duplicate-properties/
         'declaration-block-no-duplicate-properties': [true, {
