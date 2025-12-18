@@ -284,9 +284,6 @@ export default {
         // https://stylelint.io/user-guide/rules/declaration-block-single-line-max-declarations/
         'declaration-block-single-line-max-declarations': 0,
 
-        // https://stylelint.io/user-guide/rules/declaration-no-important/
-        'declaration-no-important': true,
-
         // https://stylelint.io/user-guide/rules/declaration-property-value-keyword-no-deprecated/
         'declaration-property-value-keyword-no-deprecated': [true, {
             ignoreKeywords: ['break-word'],
@@ -419,9 +416,6 @@ export default {
             ),
         }],
 
-        // https://stylelint.io/user-guide/rules/selector-max-compound-selectors/
-        'selector-max-compound-selectors': 3,
-
         // https://stylelint.io/user-guide/rules/selector-max-id/
         'selector-max-id': 0,
 
@@ -526,6 +520,9 @@ export default {
         // https://stylelint.io/user-guide/rules/declaration-empty-line-before/
         'declaration-empty-line-before': null,
 
+        // https://stylelint.io/user-guide/rules/declaration-no-important/
+        'declaration-no-important': null,
+
         // https://stylelint.io/user-guide/rules/declaration-property-value-disallowed-list/
         'declaration-property-value-disallowed-list': null,
 
@@ -592,6 +589,9 @@ export default {
         // https://stylelint.io/user-guide/rules/property-allowed-list/
         'property-allowed-list': null,
 
+        // https://stylelint.io/user-guide/rules/rule-nesting-at-rule-required-list/
+        'rule-nesting-at-rule-required-list': null,
+
         // https://stylelint.io/user-guide/rules/list/rule-selector-property-disallowed-list/
         'rule-selector-property-disallowed-list': null,
 
@@ -621,6 +621,9 @@ export default {
 
         // https://stylelint.io/user-guide/rules/selector-max-combinators/
         'selector-max-combinators': null,
+
+        // https://stylelint.io/user-guide/rules/selector-max-compound-selectors/
+        'selector-max-compound-selectors': null,
 
         // https://stylelint.io/user-guide/rules/selector-max-pseudo-class/
         'selector-max-pseudo-class': null,

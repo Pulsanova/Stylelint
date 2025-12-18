@@ -21,13 +21,13 @@
         "@pulsanova/stylelint-config-base": "2.1.1",
         "postcss": "^8",
         "postcss-scss": "^4",
-        "stylelint-scss": "~6.12.1"
+        "stylelint-scss": "~6.13.0"
     },
     "devDependencies": {
-        "stylelint": "^16.23.1",
-        "stylelint-find-new-rules": "^5.0.0"
+        "stylelint": "^16.26.1",
+        "stylelint-find-new-rules": "^5.0.1"
     },
     "peerDependencies": {
-        "stylelint": "^16.23.1"
+        "stylelint": "^16.26.1"
     }
 }

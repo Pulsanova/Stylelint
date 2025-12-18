@@ -12,7 +12,7 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@pulsanova/eslint-config-node": "^3.0.1",
+        "@pulsanova/eslint-config-node": "^3.1.2",
         "eslint": "~9.33.0",
         "lerna": "^8.2.3"
     },
