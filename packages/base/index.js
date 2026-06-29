@@ -140,6 +140,9 @@ export default {
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-missing-end-of-source-newline
         '@stylistic/no-missing-end-of-source-newline': true,
 
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-multiple-whitespaces
+        '@stylistic/no-multiple-whitespaces': true,
+
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/number-leading-zero
         '@stylistic/number-leading-zero': 'always',
 
@@ -207,7 +210,7 @@ export default {
         '@stylistic/value-list-comma-space-before': 'never',
 
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/value-list-max-empty-lines
-        '@stylistic/value-list-max-empty-lines': 0,
+        '@stylistic/value-list-max-empty-lines': 1,
 
         // https://stylelint.io/user-guide/rules/at-rule-empty-line-before/
         'at-rule-empty-line-before': ['always', {
@@ -288,6 +291,9 @@ export default {
         'declaration-property-value-keyword-no-deprecated': [true, {
             ignoreKeywords: ['break-word'],
         }],
+
+        // https://stylelint.io/user-guide/rules/display-notation/
+        'display-notation': 'short',
 
         // https://stylelint.io/user-guide/rules/font-weight-notation/
         'font-weight-notation': 'numeric',
@@ -379,8 +385,14 @@ export default {
 
         // https://stylelint.io/user-guide/rules/property-no-vendor-prefix/
         'property-no-vendor-prefix': [true, {
-            ignoreProperties: ['box-orient', 'appearance'],
+            ignoreProperties: [
+                '/^(-webkit-|-moz-)box-orient$/',
+                '/^(-webkit-|-moz-)appearance$/',
+            ],
         }],
+
+        // https://stylelint.io/user-guide/rules/relative-selector-nesting-notation/
+        'relative-selector-nesting-notation': 'implicit',
 
         // https://stylelint.io/user-guide/rules/rule-empty-line-before/
         'rule-empty-line-before': ['always-multi-line', {
@@ -390,19 +402,12 @@ export default {
 
         // https://stylelint.io/user-guide/rules/selector-class-pattern/
         'selector-class-pattern': [
-            (() => {
-                // @see https://regex101.com/r/qGcwwl/1
-                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)';
-
-                // @see https://regex101.com/r/8g3k8D/3
-                const WORD = '[a-z0-9]+(?:-[a-z0-9]+)*';
-                return `^${BLOCK}(?:__${WORD})*(?:--${WORD})?$`;
-            })(),
+            // @see https://regex101.com/r/qGcwwl/1
+            '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)',
             {
-                resolveNestedSelectors: true,
                 message: (
                     'Use either kebab-case or PascalCase BEM names for the selectors ' +
-                    '(e.g. `.Foo {}`, `.Foo__bar {}`, `.foo__bar {}`, `.Foo__bar--active {}`, ...)'
+                    '(e.g. `.Foo {}`, `.foo {}`, ...)'
                 ),
             },
         ],
@@ -430,10 +435,16 @@ export default {
             message: `Universal selectors are not allowed.`,
         }],
 
+        // https://stylelint.io/user-guide/rules/selector-no-deprecated/
+        'selector-no-deprecated': true,
+
         // https://stylelint.io/user-guide/rules/selector-no-qualifying-type/
         'selector-no-qualifying-type': [true, {
             ignore: ['attribute'],
         }],
+
+        // https://stylelint.io/user-guide/rules/selector-no-invalid/
+        'selector-no-invalid': true,
 
         // https://stylelint.io/user-guide/rules/time-min-milliseconds/
         'time-min-milliseconds': [100, {
@@ -580,14 +591,25 @@ export default {
         // https://stylelint.io/user-guide/rules/number-max-precision/
         'number-max-precision': null,
 
+        // https://github.com/hudochenkov/stylelint-order/blob/master/rules/custom-properties-alphabetical-order/README.md
+        'order/custom-properties-alphabetical-order': null,
+
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-alphabetical-order/README.md
         'order/properties-alphabetical-order': null,
+
+        // https://stylelint.io/user-guide/rules/property-allowed-list/
+        'property-allowed-list': null,
 
         // https://stylelint.io/user-guide/rules/property-disallowed-list/
         'property-disallowed-list': null,
 
-        // https://stylelint.io/user-guide/rules/property-allowed-list/
-        'property-allowed-list': null,
+        // TODO: À activer.
+        // https://stylelint.io/user-guide/rules/property-layout-mappings/
+        // https://stylelint.io/user-guide/rules/unit-layout-mappings/
+        // https://stylelint.io/user-guide/rules/value-keyword-layout-mappings/
+        'property-layout-mappings': null,
+        'unit-layout-mappings': null,
+        'value-keyword-layout-mappings': null,
 
         // https://stylelint.io/user-guide/rules/rule-nesting-at-rule-required-list/
         'rule-nesting-at-rule-required-list': null,

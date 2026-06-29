@@ -174,8 +174,43 @@ export default {
         // https://github.com/stylelint-scss/stylelint-scss/blob/master/src/rules/operator-no-unspaced/README.md
         'scss/operator-no-unspaced': true,
 
+        // https://stylelint.io/user-guide/rules/selector-class-pattern/
+        'selector-class-pattern': null,
+        'scss/selector-class-pattern': [
+            (() => {
+                // @see https://regex101.com/r/qGcwwl/1
+                const BLOCK = '(?:[A-Z][a-zA-Z0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*)';
+
+                // @see https://regex101.com/r/8g3k8D/3
+                const WORD = '[a-z0-9]+(?:-[a-z0-9]+)*';
+                return `^${BLOCK}(?:__${WORD})*(?:--${WORD})?$`;
+            })(),
+            {
+                resolveNestedSelectors: true,
+                message: (
+                    'Use either kebab-case or PascalCase BEM names for the selectors ' +
+                    '(e.g. `.Foo {}`, `.Foo__bar {}`, `.foo__bar {}`, `.Foo__bar--active {}`, ...)'
+                ),
+            },
+        ],
+
         // https://github.com/stylelint-scss/stylelint-scss/blob/master/src/rules/selector-no-redundant-nesting-selector/README.md
         'scss/selector-no-redundant-nesting-selector': true,
+
+        //
+        // - Règles incompatibles
+        //
+
+        // Cf. https://github.com/stylelint/stylelint/pull/8913
+        // https://stylelint.io/user-guide/rules/no-duplicate-selectors/
+        'no-duplicate-selectors': null,
+
+        // Pris en charge par `scss/selector-no-redundant-nesting-selector`.
+        // https://stylelint.io/user-guide/rules/relative-selector-nesting-notation/
+        'relative-selector-nesting-notation': null,
+
+        // https://stylelint.io/user-guide/rules/selector-no-invalid/
+        'selector-no-invalid': null,
 
         //
         // - Règles désactivées
