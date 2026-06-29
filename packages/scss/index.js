@@ -205,6 +205,10 @@ export default {
         // https://stylelint.io/user-guide/rules/no-duplicate-selectors/
         'no-duplicate-selectors': null,
 
+        // Cf. https://github.com/stylelint/stylelint/pull/8913
+        // https://stylelint.io/user-guide/rules/selector-no-qualifying-type/
+        'selector-no-qualifying-type': null,
+
         // Pris en charge par `scss/selector-no-redundant-nesting-selector`.
         // https://stylelint.io/user-guide/rules/relative-selector-nesting-notation/
         'relative-selector-nesting-notation': null,
