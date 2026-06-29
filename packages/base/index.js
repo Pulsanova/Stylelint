@@ -461,6 +461,7 @@ export default {
         'value-keyword-case': ['lower', {
             // - Ignore les variables (faux positifs avec les noms de police dans les variables)
             ignoreProperties: [/^\$/],
+            ignoreKeywords: [/^--/],
             camelCaseSvgKeywords: true,
         }],
 
