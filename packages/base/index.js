@@ -140,9 +140,6 @@ export default {
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-missing-end-of-source-newline
         '@stylistic/no-missing-end-of-source-newline': true,
 
-        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-multiple-whitespaces
-        '@stylistic/no-multiple-whitespaces': true,
-
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/number-leading-zero
         '@stylistic/number-leading-zero': 'always',
 
@@ -500,6 +497,10 @@ export default {
 
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/named-grid-areas-alignment
         '@stylistic/named-grid-areas-alignment': null,
+
+        // TODO: À ré-activer lorsqu'il n'y aura plus de faux-positifs avec les commentaires.
+        // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/no-multiple-whitespaces
+        '@stylistic/no-multiple-whitespaces': null,
 
         // https://github.com/stylelint-stylistic/stylelint-stylistic/blob/main/lib/rules/selector-list-comma-newline-before
         '@stylistic/selector-list-comma-newline-before': null,
